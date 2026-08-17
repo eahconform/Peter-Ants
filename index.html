@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Peter Ants - Créations artistiques autour de l'univers des fourmis."
+  >
+
+  <title>Peter Ants | Créations de Fourmis</title>
+
+  <!-- POLICES GOOGLE -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- ICONES -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+  <style>
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    :root {
+      --black: #050505;
+      --black-soft: #0b0a08;
+      --black-card: #11100d;
+
+      --gold: #c69443;
+      --gold-light: #e2b86a;
+      --gold-dark: #7c5524;
+
+      --cream: #e7dcc8;
+      --text: #c9bdab;
+      --white: #ffffff;
+
+      --border: rgba(198, 148, 67, 0.55);
+    }
+
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at 70% 10%,
+          rgba(128, 84, 30, 0.14),
+          transparent 30%
+        ),
+        #050505;
+
+      color: var(--text);
+
+      font-family: "Montserrat", sans-serif;
+
+      min-height: 100vh;
+
+      overflow-x: hidden;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+
+    /* =========================================================
+       SCROLLBAR
+    ========================================================= */
+
+    ::-webkit-scrollbar {
+      width: 9px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #050505;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold-dark);
+      border-radius: 20px;
+    }
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    header {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+
+      z-index: 1000;
+
+      background: rgba(3, 3, 3, 0.88);
+
+      backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(198, 148, 67, 0.18);
+    }
+
+    .navbar {
+      max-width: 1400px;
+
+      margin: auto;
+
+      min-height: 90px;
+
+      padding: 0 35px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 30px;
+    }
+
+    .logo {
+      min-width: 220px;
+    }
+
+    .logo-main {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      font-size: 34px;
+
+      letter-spacing: 4px;
+
+      line-height: 1;
+    }
+
+    .logo-small {
+      display: block;
+
+      margin-top: 5px;
+
+      color: var(--gold);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 16px;
+
+      font-style: italic;
+
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+
+      align-items: center;
+
+      gap: 35px;
+    }
+
+    nav a {
+      color: #d1b98d;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 15px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold-light);
+    }
+
+    .menu-button {
+      display: none;
+
+      background: none;
+
+      border: none;
+
+      color: var(--gold-light);
+
+      font-size: 25px;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       HERO
+    ========================================================= */
+
+    .hero {
+      min-height: 100vh;
+
+      padding-top: 90px;
+
+      display: grid;
+
+      grid-template-columns: 45% 55%;
+
+      position: relative;
+
+      background: #050505;
+    }
+
+    .hero-text {
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      padding: 80px 7%;
+    }
+
+    .hero-label {
+      color: var(--gold);
+
+      font-family: "Cormorant Garamond", serif;
+
+      letter-spacing: 5px;
+
+      font-size: 18px;
+
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      font-size: clamp(65px, 7vw, 115px);
+
+      font-weight: 500;
+
+      line-height: 0.85;
+
+      letter-spacing: 5px;
+    }
+
+    .ornament {
+      width: 300px;
+
+      height: 1px;
+
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--gold),
+        transparent
+      );
+
+      margin: 34px 0;
+    }
+
+    .hero h2 {
+      font-family: "Cormorant Garamond", serif;
+
+      color: #dab471;
+
+      font-size: 25px;
+
+      font-weight: 400;
+
+      letter-spacing: 6px;
+
+      margin-bottom: 25px;
+    }
+
+    .hero-text p {
+      max-width: 580px;
+
+      font-size: 16px;
+
+      line-height: 2;
+
+      color: #b9aa95;
+    }
+
+    .gold-button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      width: fit-content;
+
+      margin-top: 35px;
+
+      min-width: 250px;
+
+      min-height: 54px;
+
+      padding: 12px 28px;
+
+      border: 1px solid var(--gold-dark);
+
+      color: var(--gold-light);
+
+      background: transparent;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 17px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      cursor: pointer;
+
+      transition: 0.35s;
+    }
+
+    .gold-button:hover {
+      background: var(--gold);
+
+      color: #090704;
+
+      box-shadow:
+        0 0 30px rgba(198, 148, 67, 0.22);
+    }
+
+    .hero-image {
+      position: relative;
+
+      min-height: 700px;
+
+      overflow: hidden;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .hero-image::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          to right,
+          #050505 0%,
+          transparent 30%
+        ),
+        linear-gradient(
+          to top,
+          #050505 0%,
+          transparent 25%
+        );
+    }
+
+
+    /* =========================================================
+       TITRES SECTIONS
+    ========================================================= */
+
+    section {
+      scroll-margin-top: 110px;
+    }
+
+    .section-container {
+      width: min(1400px, 92%);
+
+      margin: auto;
+
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+
+      margin-bottom: 60px;
+    }
+
+    .section-heading span {
+      display: block;
+
+      color: #806034;
+
+      text-transform: uppercase;
+
+      letter-spacing: 5px;
+
+      font-size: 12px;
+
+      margin-bottom: 12px;
+    }
+
+    .section-heading h2 {
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: clamp(38px, 5vw, 60px);
+
+      font-weight: 400;
+
+      letter-spacing: 4px;
+    }
+
+    .section-heading p {
+      max-width: 650px;
+
+      margin: 20px auto 0;
+
+      line-height: 1.8;
+
+      color: #8e8374;
+    }
+
+
+    /* =========================================================
+       COLLECTION
+    ========================================================= */
+
+    #collection {
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(166, 109, 38, 0.08),
+          transparent 45%
+        );
+    }
+
+    .gallery {
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 20px;
+    }
+
+    .art-card {
+      background: linear-gradient(
+        145deg,
+        rgba(22, 19, 14, 0.95),
+        rgba(7, 7, 6, 0.98)
+      );
+
+      border: 1px solid var(--border);
+
+      overflow: hidden;
+
+      cursor: pointer;
+
+      position: relative;
+
+      transition:
+        transform 0.4s,
+        box-shadow 0.4s,
+        border-color 0.4s;
+    }
+
+    .art-card:hover {
+      transform: translateY(-10px);
+
+      border-color: var(--gold);
+
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.65),
+        0 0 30px rgba(196, 146, 64, 0.08);
+    }
+
+    .art-image {
+      position: relative;
+
+      height: 390px;
+
+      overflow: hidden;
+    }
+
+    .art-image img {
+      height: 100%;
+
+      object-fit: cover;
+
+      transition: transform 0.8s;
+    }
+
+    .art-card:hover .art-image img {
+      transform: scale(1.07);
+    }
+
+    .art-image::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background: linear-gradient(
+        to top,
+        rgba(5, 5, 5, 0.9),
+        transparent 50%
+      );
+    }
+
+    .number {
+      position: absolute;
+
+      top: 18px;
+      left: 18px;
+
+      z-index: 2;
+
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      border: 1px solid rgba(220, 175, 95, 0.5);
+
+      width: 40px;
+      height: 40px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background: rgba(5, 5, 5, 0.75);
+    }
+
+    .art-info {
+      padding: 25px;
+
+      text-align: center;
+    }
+
+    .art-info h3 {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      font-size: 26px;
+
+      font-weight: 500;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+    .art-subtitle {
+      margin-top: 7px;
+
+      font-size: 12px;
+
+      letter-spacing: 2px;
+
+      color: #7c6d59;
+
+      text-transform: uppercase;
+    }
+
+    .price {
+      margin-top: 18px;
+
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 25px;
+    }
+
+    .discover {
+      display: inline-block;
+
+      margin-top: 17px;
+
+      color: #a97c3e;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       HISTOIRE
+    ========================================================= */
+
+    .story {
+      background: #080807;
+
+      border-top: 1px solid rgba(198, 148, 67, 0.12);
+
+      border-bottom: 1px solid rgba(198, 148, 67, 0.12);
+    }
+
+    .story-layout {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 80px;
+
+      align-items: center;
+    }
+
+    .story-image {
+      position: relative;
+
+      padding: 15px;
+
+      border: 1px solid rgba(198, 148, 67, 0.4);
+    }
+
+    .story-image img {
+      height: 570px;
+
+      object-fit: cover;
+    }
+
+    .story-text small {
+      display: block;
+
+      color: var(--gold);
+
+      letter-spacing: 4px;
+
+      margin-bottom: 12px;
+    }
+
+    .story-text h2 {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      font-size: 55px;
+
+      font-weight: 400;
+
+      margin-bottom: 25px;
+    }
+
+    .story-text p {
+      line-height: 2;
+
+      margin-bottom: 20px;
+
+      color: #a99d8e;
+    }
+
+
+    /* =========================================================
+       SUR MESURE
+    ========================================================= */
+
+    .custom-box {
+      min-height: 380px;
+
+      border: 1px solid rgba(198, 148, 67, 0.65);
+
+      position: relative;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: center;
+
+      padding: 60px;
+    }
+
+    .custom-box::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(5, 5, 5, 0.98) 20%,
+          rgba(5, 5, 5, 0.75) 55%,
+          rgba(5, 5, 5, 0.2)
+        ),
+        url("naissance.jpg");
+
+      background-position: center;
+      background-size: cover;
+    }
+
+    .custom-content {
+      position: relative;
+
+      z-index: 2;
+
+      max-width: 650px;
+    }
+
+    .custom-content h2 {
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 45px;
+
+      font-weight: 400;
+
+      margin-bottom: 20px;
+    }
+
+    .custom-content p {
+      line-height: 1.9;
+
+      color: #b8aa97;
+    }
+
+
+    /* =========================================================
+       CONTACT
+    ========================================================= */
+
+    .contact {
+      padding: 90px 0;
+
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: "Cormorant Garamond", serif;
+
+      color: var(--gold-light);
+
+      font-weight: 400;
+
+      font-size: 45px;
+    }
+
+    .contact p {
+      margin: 15px auto 35px;
+
+      max-width: 600px;
+
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+      border-top: 1px solid rgba(198, 148, 67, 0.3);
+
+      padding: 55px 5% 25px;
+
+      background: #030303;
+    }
+
+    .footer-grid {
+      max-width: 1400px;
+
+      margin: auto;
+
+      display: grid;
+
+      grid-template-columns: 1.2fr 1fr 1fr;
+
+      gap: 50px;
+    }
+
+    .footer-logo {
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 31px;
+
+      letter-spacing: 4px;
+    }
+
+    .footer-description {
+      margin-top: 14px;
+
+      max-width: 320px;
+
+      line-height: 1.8;
+
+      font-size: 13px;
+    }
+
+    footer h4 {
+      color: #af8952;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 17px;
+
+      font-weight: 400;
+
+      letter-spacing: 3px;
+
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 12px;
+
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .socials {
+      display: flex;
+
+      gap: 16px;
+    }
+
+    .social-button {
+      width: 58px;
+      height: 58px;
+
+      border: 1px solid var(--gold-dark);
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      color: var(--gold-light);
+
+      font-size: 22px;
+
+      transition: 0.3s;
+    }
+
+    .social-button:hover {
+      background: var(--gold);
+
+      color: #080604;
+
+      transform: translateY(-4px);
+    }
+
+    .copyright {
+      max-width: 1400px;
+
+      margin: 50px auto 0;
+
+      padding-top: 22px;
+
+      border-top: 1px solid rgba(198, 148, 67, 0.16);
+
+      text-align: center;
+
+      font-size: 12px;
+
+      color: #61594d;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* =========================================================
+       MODALE PROFIL FOURMI
+    ========================================================= */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 3000;
+
+      background: rgba(0, 0, 0, 0.9);
+
+      backdrop-filter: blur(12px);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 25px;
+    }
+
+    .modal.active {
+      display: flex;
+
+      animation: fadeIn 0.35s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      width: min(1150px, 100%);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      display: grid;
+
+      grid-template-columns: 48% 52%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #11100d,
+          #060606
+        );
+
+      border: 1px solid var(--gold-dark);
+
+      box-shadow:
+        0 35px 100px rgba(0, 0, 0, 0.9);
+    }
+
+    .modal-image {
+      min-height: 650px;
+    }
+
+    .modal-image img {
+      height: 100%;
+
+      object-fit: cover;
+    }
+
+    .modal-info {
+      position: relative;
+
+      padding: 60px;
+    }
+
+    .close-modal {
+      position: absolute;
+
+      top: 20px;
+      right: 25px;
+
+      width: 42px;
+      height: 42px;
+
+      background: transparent;
+
+      border: 1px solid #624822;
+
+      color: var(--gold-light);
+
+      font-size: 24px;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+    }
+
+    .close-modal:hover {
+      background: var(--gold);
+
+      color: black;
+    }
+
+    .modal-number {
+      color: #76552d;
+
+      font-size: 12px;
+
+      letter-spacing: 4px;
+
+      margin-bottom: 10px;
+    }
+
+    .modal-info h2 {
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 52px;
+
+      font-weight: 400;
+
+      margin-bottom: 5px;
+    }
+
+    .modal-subtitle {
+      color: #907248;
+
+      text-transform: uppercase;
+
+      letter-spacing: 3px;
+
+      font-size: 12px;
+
+      margin-bottom: 25px;
+    }
+
+    .modal-price {
+      color: var(--gold-light);
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 30px;
+
+      margin-bottom: 30px;
+    }
+
+    .modal-section {
+      border-top: 1px solid rgba(198, 148, 67, 0.25);
+
+      padding-top: 22px;
+
+      margin-top: 22px;
+    }
+
+    .modal-section h3 {
+      color: #c99c58;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 22px;
+
+      font-weight: 400;
+
+      margin-bottom: 10px;
+    }
+
+    .modal-section p {
+      line-height: 1.85;
+
+      font-size: 14px;
+
+      color: #aaa092;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+    @media (max-width: 1100px) {
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-text {
+        min-height: 600px;
+
+        position: relative;
+
+        z-index: 2;
+      }
+
+      .hero-image {
+        height: 650px;
+      }
+
+      .story-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image {
+        min-height: 400px;
+        height: 450px;
+      }
+
+    }
+
+
+    @media (max-width: 850px) {
+
+      .navbar {
+        min-height: 75px;
+      }
+
+      nav {
+        display: none;
+
+        position: absolute;
+
+        left: 0;
+        top: 75px;
+
+        width: 100%;
+
+        background: #080807;
+
+        padding: 30px;
+
+        flex-direction: column;
+
+        border-bottom: 1px solid var(--gold-dark);
+      }
+
+      nav.active {
+        display: flex;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .logo-main {
+        font-size: 27px;
+      }
+
+      .hero {
+        padding-top: 75px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+    }
+
+
+    @media (max-width: 620px) {
+
+      .navbar {
+        padding: 0 20px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .art-image {
+        height: 430px;
+      }
+
+      .hero-text {
+        padding: 70px 25px;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+      }
+
+      .hero h2 {
+        font-size: 20px;
+
+        letter-spacing: 4px;
+      }
+
+      .hero-image {
+        height: 500px;
+
+        min-height: auto;
+      }
+
+      .section-container {
+        width: 90%;
+
+        padding: 75px 0;
+      }
+
+      .custom-box {
+        padding: 35px 25px;
+      }
+
+      .custom-content h2 {
+        font-size: 36px;
+      }
+
+      .story-text h2 {
+        font-size: 42px;
+      }
+
+      .story-image img {
+        height: 450px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-image {
+        height: 330px;
+
+        min-height: 330px;
+      }
+
+      .modal-info {
+        padding: 40px 25px;
+      }
+
+      .modal-info h2 {
+        font-size: 38px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header>
+
+  <div class="navbar">
+
+    <a href="#accueil" class="logo">
+
+      <div class="logo-main">
+        PETER ANTS
+      </div>
+
+      <span class="logo-small">
+        Créations de Fourmis
+      </span>
+
+    </a>
+
+
+    <nav id="navigation">
+
+      <a href="#accueil">
+        Accueil
+      </a>
+
+      <a href="#collection">
+        Collection
+      </a>
+
+      <a href="#histoire">
+        À propos
+      </a>
+
+      <a href="#sur-mesure">
+        Sur mesure
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </nav>
+
+
+    <button
+      class="menu-button"
+      onclick="toggleMenu()"
+      aria-label="Ouvrir le menu"
+    >
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+  </div>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<main>
+
+<section
+  class="hero"
+  id="accueil"
+>
+
+  <div class="hero-text">
+
+    <div class="hero-label">
+      CRÉATIONS ARTISTIQUES
+    </div>
+
+    <h1>
+      PETER<br>
+      ANTS
+    </h1>
+
+    <div class="ornament"></div>
+
+    <h2>
+      L'ART EN MINUSCULE
+    </h2>
+
+    <p>
+      Des fourmis sculptées et mises en scène dans des
+      univers miniatures inspirés de notre quotidien.
+      Chaque œuvre raconte une histoire et transforme
+      l'univers des fourmis en miroir de la vie humaine.
+    </p>
+
+    <a
+      href="#collection"
+      class="gold-button"
+    >
+      Découvrir la collection
+    </a>
+
+  </div>
+
+
+  <div class="hero-image">
+
+    <img
+      src="guide.jpg"
+      alt="La Fourmi Guide Peter Ants"
+    >
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COLLECTION
+========================================================= -->
+
+<section id="collection">
+
+  <div class="section-container">
+
+    <div class="section-heading">
+
+      <span>
+        Peter Ants
+      </span>
+
+      <h2>
+        LES CRÉATIONS
+      </h2>
+
+      <p>
+        Entrez dans l'univers de Peter Ants.
+        Cliquez sur une œuvre pour découvrir son histoire
+        et le parallèle qu'elle établit avec notre propre vie.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+      <!-- NAISSANCE -->
+
+      <article
+        class="art-card"
+        onclick="openAnt('naissance')"
+      >
+
+        <div class="art-image">
+
+          <span class="number">
+            01
+          </span>
+
+          <img
+            src="naissance.jpg"
+            alt="La Naissance"
+          >
+
+        </div>
+
+        <div class="art-info">
+
+          <h3>
+            La Naissance
+          </h3>
+
+          <div class="art-subtitle">
+            Le commencement
+          </div>
+
+          <div class="price">
+            290 €
+          </div>
+
+          <span class="discover">
+            Découvrir l'œuvre →
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- TANK -->
+
+      <article
+        class="art-card"
+        onclick="openAnt('tank')"
+      >
+
+        <div class="art-image">
+
+          <span class="number">
+            02
+          </span>
+
+          <img
+            src="tank.jpg"
+            alt="Le Tank"
+          >
+
+        </div>
+
+        <div class="art-info">
+
+          <h3>
+            Le Tank
+          </h3>
+
+          <div class="art-subtitle">
+            La force du collectif
+          </div>
+
+          <div class="price">
+            490 €
+          </div>
+
+          <span class="discover">
+            Découvrir l'œuvre →
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- GUIDE -->
+
+      <article
+        class="art-card"
+        onclick="openAnt('guide')"
+      >
+
+        <div class="art-image">
+
+          <span class="number">
+            03
+          </span>
+
+          <img
+            src="guide.jpg"
+            alt="La Fourmi Guide"
+          >
+
+        </div>
+
+        <div class="art-info">
+
+          <h3>
+            La Fourmi Guide
+          </h3>
+
+          <div class="art-subtitle">
+            Éclairer le chemin
+          </div>
+
+          <div class="price">
+            350 €
+          </div>
+
+          <span class="discover">
+            Découvrir l'œuvre →
+          </span>
+
+        </div>
+
+      </article>
+
+
+
+      <!-- SERVEUSE -->
+
+      <article
+        class="art-card"
+        onclick="openAnt('serveuse')"
+      >
+
+        <div class="art-image">
+
+          <span class="number">
+            04
+          </span>
+
+          <img
+            src="serveuse.jpg"
+            alt="La Fourmi Serveuse"
+          >
+
+        </div>
+
+        <div class="art-info">
+
+          <h3>
+            La Fourmi Serveuse
+          </h3>
+
+          <div class="art-subtitle">
+            L'art du service
+          </div>
+
+          <div class="price">
+            390 €
+          </div>
+
+          <span class="discover">
+            Découvrir l'œuvre →
+          </span>
+
+        </div>
+
+      </article>
+
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     HISTOIRE / A PROPOS
+========================================================= -->
+
+<section
+  class="story"
+  id="histoire"
+>
+
+  <div class="section-container">
+
+    <div class="story-layout">
+
+      <div class="story-image">
+
+        <img
+          src="tank.jpg"
+          alt="Univers Peter Ants"
+        >
+
+      </div>
+
+
+      <div class="story-text">
+
+        <small>
+          L'UNIVERS PETER ANTS
+        </small>
+
+        <h2>
+          Des petites fourmis.<br>
+          De grandes histoires.
+        </h2>
+
+        <p>
+          Peter Ants détourne l'image de la fourmi pour
+          raconter notre propre quotidien.
+        </p>
+
+        <p>
+          Travail, naissance, entraide, ambition, orientation,
+          service et vie collective deviennent des scènes
+          artistiques miniatures.
+        </p>
+
+        <p>
+          Dans chaque création, la fourmi prend une place
+          habituellement réservée à l'être humain.
+          Elle devient alors un personnage capable de raconter
+          une histoire universelle.
+        </p>
+
+        <a
+          href="#collection"
+          class="gold-button"
+        >
+          Voir les œuvres
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SUR MESURE
+========================================================= -->
+
+<section id="sur-mesure">
+
+  <div class="section-container">
+
+    <div class="custom-box">
+
+      <div class="custom-content">
+
+        <h2>
+          Une création unique pour vous
+        </h2>
+
+        <p>
+          Une profession, un souvenir, une passion ou une histoire
+          particulière ? Peter Ants imagine des scènes de fourmis
+          personnalisées et crée une œuvre autour de votre univers.
+        </p>
+
+        <a
+          href="#contact"
+          class="gold-button"
+        >
+          Commander sur mesure
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CONTACT
+========================================================= -->
+
+<section
+  class="contact"
+  id="contact"
+>
+
+  <div class="section-container">
+
+    <div class="section-heading">
+
+      <span>
+        Une question ?
+      </span>
+
+      <h2>
+        CONTACTER PETER ANTS
+      </h2>
+
+      <p>
+        Pour l'achat d'une œuvre, une création personnalisée
+        ou une demande d'information.
+      </p>
+
+    </div>
+
+    <!-- REMPLACE L'EMAIL -->
+
+    <a
+      href="mailto:contact@peterants.fr"
+      class="gold-button"
+    >
+      Nous contacter
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+  <div class="footer-grid">
+
+
+    <div>
+
+      <div class="footer-logo">
+        PETER ANTS
+      </div>
+
+      <div class="logo-small">
+        Créations de Fourmis
+      </div>
+
+      <p class="footer-description">
+        Des œuvres miniatures qui racontent
+        de grandes histoires.
+      </p>
+
+    </div>
+
+
+
+    <div>
+
+      <h4>
+        Navigation
+      </h4>
+
+      <div class="footer-links">
+
+        <a href="#accueil">
+          Accueil
+        </a>
+
+        <a href="#collection">
+          Les créations
+        </a>
+
+        <a href="#histoire">
+          À propos
+        </a>
+
+        <a href="#sur-mesure">
+          Commande sur mesure
+        </a>
+
+      </div>
+
+    </div>
+
+
+
+    <div>
+
+      <h4>
+        Suivez-nous
+      </h4>
+
+      <div class="socials">
+
+
+        <!-- INSTAGRAM -->
+
+        <a
+          class="social-button"
+          href="https://instagram.com/"
+          target="_blank"
+          aria-label="Instagram"
+        >
+
+          <i class="fa-brands fa-instagram"></i>
+
+        </a>
+
+
+
+        <!-- FACEBOOK -->
+
+        <a
+          class="social-button"
+          href="https://facebook.com/"
+          target="_blank"
+          aria-label="Facebook"
+        >
+
+          <i class="fa-brands fa-facebook-f"></i>
+
+        </a>
+
+
+
+        <!-- GOOGLE -->
+
+        <a
+          class="social-button"
+          href="https://google.com/"
+          target="_blank"
+          aria-label="Google"
+        >
+
+          <i class="fa-brands fa-google"></i>
+
+        </a>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+  <div class="copyright">
+
+    © <span id="year"></span>
+    Peter Ants — Tous droits réservés
+
+  </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     MODALE
+========================================================= -->
+
+<div
+  class="modal"
+  id="antModal"
+  onclick="closeFromBackground(event)"
+>
+
+  <div class="modal-content">
+
+
+    <div class="modal-image">
+
+      <img
+        id="modalImage"
+        src=""
+        alt=""
+      >
+
+    </div>
+
+
+    <div class="modal-info">
+
+      <button
+        class="close-modal"
+        onclick="closeModal()"
+      >
+        ×
+      </button>
+
+
+      <div
+        class="modal-number"
+        id="modalNumber"
+      ></div>
+
+
+      <h2 id="modalTitle"></h2>
+
+
+      <div
+        class="modal-subtitle"
+        id="modalSubtitle"
+      ></div>
+
+
+      <div
+        class="modal-price"
+        id="modalPrice"
+      ></div>
+
+
+      <div class="modal-section">
+
+        <h3>
+          L'histoire de la scène
+        </h3>
+
+        <p id="modalStory"></p>
+
+      </div>
+
+
+      <div class="modal-section">
+
+        <h3>
+          Le parallèle avec notre vie
+        </h3>
+
+        <p id="modalParallel"></p>
+
+      </div>
+
+
+      <div class="modal-section">
+
+        <h3>
+          Le message de l'œuvre
+        </h3>
+
+        <p id="modalMessage"></p>
+
+      </div>
+
+
+      <a
+        href="#contact"
+        class="gold-button"
+        onclick="closeModal()"
+      >
+        Demander cette œuvre
+      </a>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+
+/* =========================================================
+   DONNÉES DES FOURMIS
+========================================================= */
+
+const ants = {
+
+
+  naissance: {
+
+    number: "ŒUVRE 01",
+
+    title: "La Naissance",
+
+    subtitle: "Le commencement de toute aventure",
+
+    price: "290 €",
+
+    image: "naissance.jpg",
+
+    story:
+      `Une fourmi émerge de son cocon et découvre pour la
+      première fois le monde qui l'entoure. La scène représente
+      cet instant fragile où quelque chose de nouveau apparaît,
+      encore vulnérable mais déjà prêt à évoluer.`,
+
+    parallel:
+      `La naissance ne représente pas uniquement l'arrivée
+      au monde. Elle évoque également le début d'une idée,
+      d'un projet, d'une entreprise ou d'une nouvelle étape
+      dans une vie. Toutes les grandes réalisations commencent
+      par quelque chose de petit et de fragile.`,
+
+    message:
+      `Chaque commencement possède un potentiel immense.
+      Il faut parfois protéger, nourrir et laisser grandir
+      une idée avant qu'elle puisse révéler toute sa force.`
+
+  },
+
+
+
+  tank: {
+
+    number: "ŒUVRE 02",
+
+    title: "Le Tank",
+
+    subtitle: "La force du collectif",
+
+    price: "490 €",
+
+    image: "tank.jpg",
+
+    story:
+      `Plusieurs fourmis avancent ensemble dans un environnement
+      hostile. Leur organisation et leur puissance collective
+      les transforment symboliquement en une véritable unité
+      capable d'affronter les obstacles.`,
+
+    parallel:
+      `Dans la vie humaine, les grandes réalisations reposent
+      rarement sur une personne seule. Une entreprise, une équipe,
+      une famille ou un groupe progresse lorsque chacun apporte
+      une partie de sa force au collectif.`,
+
+    message:
+      `Individuellement petite, la fourmi devient redoutablement
+      puissante lorsqu'elle agit avec les autres. L'union,
+      l'organisation et la détermination permettent de franchir
+      des obstacles qui semblaient impossibles.`
+
+  },
+
+
+
+  guide: {
+
+    number: "ŒUVRE 03",
+
+    title: "La Fourmi Guide",
+
+    subtitle: "Éclairer le chemin",
+
+    price: "350 €",
+
+    image: "guide.jpg",
+
+    story:
+      `Une fourmi traverse l'obscurité en transportant une lanterne.
+      Autour d'elle, le chemin reste inconnu. La lumière qu'elle
+      porte devient son seul repère et lui permet d'avancer.`,
+
+    parallel:
+      `Dans notre vie, certaines personnes deviennent des guides :
+      un parent, un professeur, un entraîneur, un ami ou un mentor.
+      Ils ne parcourent pas nécessairement le chemin à notre place,
+      mais ils nous permettent de mieux voir la direction à prendre.`,
+
+    message:
+      `Être un guide ne signifie pas connaître toutes les réponses.
+      Cela signifie parfois simplement apporter suffisamment
+      de lumière pour permettre à quelqu'un de continuer à avancer.`
+
+  },
+
+
+
+  serveuse: {
+
+    number: "ŒUVRE 04",
+
+    title: "La Fourmi Serveuse",
+
+    subtitle: "L'art du service",
+
+    price: "390 €",
+
+    image: "serveuse.jpg",
+
+    story:
+      `Dans l'atmosphère chaleureuse d'une cave ou d'un restaurant,
+      une fourmi présente une bouteille de vin. L'insecte adopte
+      ici un rôle profondément humain : accueillir, servir
+      et participer à un moment de convivialité.`,
+
+    parallel:
+      `Le service semble parfois être une succession de petits
+      gestes. Pourtant, dans un restaurant, un hôtel ou un commerce,
+      ces détails construisent l'expérience vécue par le client.
+      Une attention peut transformer un instant ordinaire
+      en souvenir.`,
+
+    message:
+      `Cette création célèbre les métiers du service,
+      l'attention portée aux autres et la valeur des petits détails.
+      Le soin donné à une expérience peut être aussi important
+      que le produit lui-même.`
+
+  }
+
+};
+
+
+
+/* =========================================================
+   OUVERTURE PROFIL
+========================================================= */
+
+function openAnt(id) {
+
+  const ant = ants[id];
+
+  document.getElementById("modalNumber").textContent =
+    ant.number;
+
+  document.getElementById("modalTitle").textContent =
+    ant.title;
+
+  document.getElementById("modalSubtitle").textContent =
+    ant.subtitle;
+
+  document.getElementById("modalPrice").textContent =
+    ant.price;
+
+  document.getElementById("modalImage").src =
+    ant.image;
+
+  document.getElementById("modalImage").alt =
+    ant.title;
+
+  document.getElementById("modalStory").textContent =
+    ant.story;
+
+  document.getElementById("modalParallel").textContent =
+    ant.parallel;
+
+  document.getElementById("modalMessage").textContent =
+    ant.message;
+
+
+  document
+    .getElementById("antModal")
+    .classList
+    .add("active");
+
+
+  document.body.style.overflow = "hidden";
+
+}
+
+
+
+/* =========================================================
+   FERMETURE MODALE
+========================================================= */
+
+function closeModal() {
+
+  document
+    .getElementById("antModal")
+    .classList
+    .remove("active");
+
+  document.body.style.overflow = "";
+
+}
+
+
+
+function closeFromBackground(event) {
+
+  if (event.target.id === "antModal") {
+
+    closeModal();
+
+  }
+
+}
+
+
+
+/* =========================================================
+   TOUCHE ECHAP
+========================================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Escape") {
+
+      closeModal();
+
+    }
+
+  }
+);
+
+
+
+/* =========================================================
+   MENU MOBILE
+========================================================= */
+
+function toggleMenu() {
+
+  document
+    .getElementById("navigation")
+    .classList
+    .toggle("active");
+
+}
+
+
+
+document
+  .querySelectorAll("#navigation a")
+  .forEach(link => {
+
+    link.addEventListener(
+      "click",
+      function() {
+
+        document
+          .getElementById("navigation")
+          .classList
+          .remove("active");
+
+      }
+    );
+
+  });
+
+
+
+/* =========================================================
+   ANNÉE AUTOMATIQUE
+========================================================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+</script>
+
+
+</body>
+</html>
