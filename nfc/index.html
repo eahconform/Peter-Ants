@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#050505"
+  >
+
+  <meta
+    name="description"
+    content="Peter Ants - Carte digitale NFC"
+  >
+
+  <title>Peter Ants | Carte digitale</title>
+
+
+  <!-- POLICES -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+
+  <!-- ICONES -->
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+  >
+
+
+  <style>
+
+    /* =========================================================
+       RESET
+    ========================================================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+
+    body {
+
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 50% 10%,
+          rgba(198, 148, 67, 0.17),
+          transparent 35%
+        ),
+        radial-gradient(
+          circle at 50% 100%,
+          rgba(105, 67, 24, 0.13),
+          transparent 35%
+        ),
+        #030303;
+
+      color: #e5d5bb;
+
+      font-family: "Montserrat", sans-serif;
+
+      display: flex;
+
+      justify-content: center;
+
+      padding:
+        max(25px, env(safe-area-inset-top))
+        18px
+        max(30px, env(safe-area-inset-bottom));
+
+    }
+
+
+    /* =========================================================
+       CONTENEUR
+    ========================================================= */
+
+    .page {
+
+      width: 100%;
+
+      max-width: 470px;
+
+      min-height: calc(100vh - 50px);
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    /* =========================================================
+       CARTE
+    ========================================================= */
+
+    .card {
+
+      width: 100%;
+
+      padding: 38px 25px 32px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(20, 18, 14, 0.97),
+          rgba(3, 3, 3, 0.99)
+        );
+
+      border: 1px solid rgba(207, 157, 74, 0.55);
+
+      border-radius: 28px;
+
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(198, 148, 67, 0.08);
+
+      position: relative;
+
+      overflow: hidden;
+
+    }
+
+
+    .card::before {
+
+      content: "";
+
+      position: absolute;
+
+      top: -120px;
+      left: 50%;
+
+      width: 300px;
+      height: 300px;
+
+      transform: translateX(-50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(213, 164, 77, 0.16),
+          transparent 67%
+        );
+
+      pointer-events: none;
+
+    }
+
+
+    /* =========================================================
+       PHOTO / LOGO
+    ========================================================= */
+
+    .visual {
+
+      position: relative;
+
+      z-index: 2;
+
+      width: 100%;
+
+      margin-bottom: 25px;
+
+    }
+
+
+    .visual img {
+
+      width: 100%;
+
+      max-width: 380px;
+
+      display: block;
+
+      margin: auto;
+
+      border-radius: 17px;
+
+      object-fit: cover;
+
+      box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.6);
+
+    }
+
+
+    /* =========================================================
+       TITRES
+    ========================================================= */
+
+    h1 {
+
+      position: relative;
+
+      z-index: 2;
+
+      margin-top: 5px;
+
+      color: #e6b863;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 45px;
+
+      font-weight: 500;
+
+      letter-spacing: 5px;
+
+      line-height: 1;
+
+    }
+
+
+    .subtitle {
+
+      margin-top: 9px;
+
+      color: #b99150;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 18px;
+
+      font-style: italic;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .gold-line {
+
+      width: 130px;
+
+      height: 1px;
+
+      margin: 24px auto;
+
+      background:
+        linear-gradient(
+          to right,
+          transparent,
+          #d5a24d,
+          transparent
+        );
+
+    }
+
+
+    .intro {
+
+      max-width: 350px;
+
+      margin: auto;
+
+      color: #a99d8d;
+
+      font-size: 13px;
+
+      line-height: 1.8;
+
+    }
+
+
+    /* =========================================================
+       BOUTONS
+    ========================================================= */
+
+    .buttons {
+
+      margin-top: 30px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+
+    }
+
+
+    .button {
+
+      width: 100%;
+
+      min-height: 62px;
+
+      padding: 13px 18px;
+
+      display: flex;
+
+      align-items: center;
+
+      border: 1px solid rgba(204, 154, 73, 0.65);
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          110deg,
+          rgba(16, 15, 12, 0.98),
+          rgba(7, 7, 6, 0.98)
+        );
+
+      color: #e6bd75;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+
+    }
+
+
+    .button:active {
+
+      transform: scale(0.98);
+
+    }
+
+
+    .button:hover {
+
+      background:
+        linear-gradient(
+          110deg,
+          #c7923f,
+          #e2b867
+        );
+
+      color: #090704;
+
+      box-shadow:
+        0 10px 30px rgba(198, 148, 67, 0.2);
+
+    }
+
+
+    .icon {
+
+      width: 45px;
+      height: 45px;
+
+      flex-shrink: 0;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-right:
+        1px solid rgba(202, 154, 76, 0.35);
+
+      margin-right: 17px;
+
+      font-size: 21px;
+
+    }
+
+
+    .button-text {
+
+      text-align: left;
+
+    }
+
+
+    .button-title {
+
+      display: block;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 20px;
+
+      font-weight: 600;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    .button-small {
+
+      display: block;
+
+      margin-top: 3px;
+
+      color: #7e715e;
+
+      font-size: 10px;
+
+      letter-spacing: 1px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .button:hover .button-small {
+      color: #443018;
+    }
+
+
+    /* =========================================================
+       NFC
+    ========================================================= */
+
+    .nfc {
+
+      margin-top: 27px;
+
+      color: #8a7148;
+
+      font-size: 11px;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .nfc i {
+
+      margin-right: 7px;
+
+      color: #c89445;
+
+      font-size: 17px;
+
+    }
+
+
+    /* =========================================================
+       FOOTER
+    ========================================================= */
+
+    footer {
+
+      margin-top: 22px;
+
+      color: #4f4940;
+
+      font-size: 10px;
+
+      text-align: center;
+
+      letter-spacing: 1px;
+
+    }
+
+
+    /* =========================================================
+       MOBILE
+    ========================================================= */
+
+    @media(max-width: 420px) {
+
+      body {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .card {
+        padding: 27px 18px;
+        border-radius: 22px;
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+
+      .visual img {
+        max-width: 330px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+<div class="page">
+
+
+  <main class="card">
+
+
+    <!-- ==========================================
+         IMAGE
+         Mets ta photo dans GitHub sous le nom :
+         peter-ants.jpg
+    =========================================== -->
+
+    <div class="visual">
+
+      <img
+        src="peter-ants.jpg"
+        alt="Peter Ants"
+      >
+
+    </div>
+
+
+
+    <h1>
+      PETER ANTS
+    </h1>
+
+
+    <div class="subtitle">
+      Créations de Fourmis
+    </div>
+
+
+    <div class="gold-line"></div>
+
+
+    <p class="intro">
+      Découvrez l'univers artistique de Peter Ants,
+      ses créations et les histoires qui se cachent
+      derrière chaque œuvre.
+    </p>
+
+
+
+    <div class="buttons">
+
+
+      <!-- ==========================================
+           SITE INTERNET
+      =========================================== -->
+
+      <a
+        class="button"
+        href="https://eahconform.github.io"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="icon">
+          <i class="fa-solid fa-globe"></i>
+        </div>
+
+        <div class="button-text">
+
+          <span class="button-title">
+            Découvrir Peter Ants
+          </span>
+
+          <span class="button-small">
+            Visiter le site internet
+          </span>
+
+        </div>
+
+      </a>
+
+
+
+      <!-- ==========================================
+           ENREGISTRER CONTACT
+      =========================================== -->
+
+      <button
+        class="button"
+        type="button"
+        onclick="saveContact()"
+      >
+
+        <div class="icon">
+          <i class="fa-solid fa-user-plus"></i>
+        </div>
+
+        <div class="button-text">
+
+          <span class="button-title">
+            Enregistrer le contact
+          </span>
+
+          <span class="button-small">
+            Peter Ants · 06 15 13 89 72
+          </span>
+
+        </div>
+
+      </button>
+
+
+
+      <!-- ==========================================
+           YOUTUBE
+      =========================================== -->
+
+      <a
+        class="button"
+        href="https://eahconform.github.io"
+        target="_blank"
+        rel="noopener"
+      >
+
+        <div class="icon">
+          <i class="fa-brands fa-youtube"></i>
+        </div>
+
+        <div class="button-text">
+
+          <span class="button-title">
+            Chaîne YouTube
+          </span>
+
+          <span class="button-small">
+            Découvrir les vidéos
+          </span>
+
+        </div>
+
+      </a>
+
+
+    </div>
+
+
+
+    <div class="nfc">
+
+      <i class="fa-solid fa-wifi"></i>
+
+      Carte digitale NFC
+
+    </div>
+
+
+  </main>
+
+
+  <footer>
+
+    © <span id="year"></span>
+    Peter Ants — Tous droits réservés
+
+  </footer>
+
+
+</div>
+
+
+
+<script>
+
+
+/* =========================================================
+   ENREGISTRER LE CONTACT
+========================================================= */
+
+function saveContact() {
+
+  const vcard =
+`BEGIN:VCARD
+VERSION:3.0
+FN:Peter Ants
+N:Ants;Peter;;;
+TEL;TYPE=CELL:+33615138972
+URL:https://eahconform.github.io
+END:VCARD`;
+
+
+  const blob =
+    new Blob(
+      [vcard],
+      {
+        type:
+          "text/vcard;charset=utf-8"
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const link =
+    document.createElement("a");
+
+
+  link.href = url;
+
+  link.download =
+    "Peter-Ants.vcf";
+
+
+  document.body.appendChild(link);
+
+  link.click();
+
+  document.body.removeChild(link);
+
+
+  setTimeout(
+    () => URL.revokeObjectURL(url),
+    1000
+  );
+
+}
+
+
+
+/* =========================================================
+   ANNÉE
+========================================================= */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
+
+</script>
+
+
+</body>
+
+</html>
