@@ -1,2633 +1,798 @@
+
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Peter Ants - Créations artistiques autour de l'univers des fourmis."
-  >
-
-  <title>Peter Ants | Créations de Fourmis</title>
-
-  <!-- POLICES GOOGLE -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  >
-
-  <!-- ICONES -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-  >
-
-  <style>
-
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
-
-    :root {
-      --black: #050505;
-      --black-soft: #0b0a08;
-      --black-card: #11100d;
-
-      --gold: #c69443;
-      --gold-light: #e2b86a;
-      --gold-dark: #7c5524;
-
-      --cream: #e7dcc8;
-      --text: #c9bdab;
-      --white: #ffffff;
-
-      --border: rgba(198, 148, 67, 0.55);
-    }
-
-
-    /* =========================================================
-       RESET
-    ========================================================= */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background:
-        radial-gradient(
-          circle at 70% 10%,
-          rgba(128, 84, 30, 0.14),
-          transparent 30%
-        ),
-        #050505;
-
-      color: var(--text);
-
-      font-family: "Montserrat", sans-serif;
-
-      min-height: 100vh;
-
-      overflow-x: hidden;
-    }
-
-    img {
-      width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button {
-      font-family: inherit;
-    }
-
-
-    /* =========================================================
-       SCROLLBAR
-    ========================================================= */
-
-    ::-webkit-scrollbar {
-      width: 9px;
-    }
-
-    ::-webkit-scrollbar-track {
-      background: #050505;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--gold-dark);
-      border-radius: 20px;
-    }
-
-
-    /* =========================================================
-       HEADER
-    ========================================================= */
-
-    header {
-      position: fixed;
-
-      top: 0;
-      left: 0;
-
-      width: 100%;
-
-      z-index: 1000;
-
-      background: rgba(3, 3, 3, 0.88);
-
-      backdrop-filter: blur(14px);
-
-      border-bottom: 1px solid rgba(198, 148, 67, 0.18);
-    }
-
-    .navbar {
-      max-width: 1400px;
-
-      margin: auto;
-
-      min-height: 90px;
-
-      padding: 0 35px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 30px;
-    }
-
-    .logo {
-      min-width: 220px;
-    }
-
-    .logo-main {
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      font-size: 34px;
-
-      letter-spacing: 4px;
-
-      line-height: 1;
-    }
-
-    .logo-small {
-      display: block;
-
-      margin-top: 5px;
-
-      color: var(--gold);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 16px;
-
-      font-style: italic;
-
-      letter-spacing: 1px;
-    }
-
-    nav {
-      display: flex;
-
-      align-items: center;
-
-      gap: 35px;
-    }
-
-    nav a {
-      color: #d1b98d;
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 15px;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--gold-light);
-    }
-
-    .menu-button {
-      display: none;
-
-      background: none;
-
-      border: none;
-
-      color: var(--gold-light);
-
-      font-size: 25px;
-
-      cursor: pointer;
-    }
-
-
-    /* =========================================================
-       HERO
-    ========================================================= */
-
-    .hero {
-      min-height: 100vh;
-
-      padding-top: 90px;
-
-      display: grid;
-
-      grid-template-columns: 45% 55%;
-
-      position: relative;
-
-      background: #050505;
-    }
-
-    .hero-text {
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
-
-      padding: 80px 7%;
-    }
-
-    .hero-label {
-      color: var(--gold);
-
-      font-family: "Cormorant Garamond", serif;
-
-      letter-spacing: 5px;
-
-      font-size: 18px;
-
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      font-size: clamp(65px, 7vw, 115px);
-
-      font-weight: 500;
-
-      line-height: 0.85;
-
-      letter-spacing: 5px;
-    }
-
-    .ornament {
-      width: 300px;
-
-      height: 1px;
-
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--gold),
-        transparent
-      );
-
-      margin: 34px 0;
-    }
-
-    .hero h2 {
-      font-family: "Cormorant Garamond", serif;
-
-      color: #dab471;
-
-      font-size: 25px;
-
-      font-weight: 400;
-
-      letter-spacing: 6px;
-
-      margin-bottom: 25px;
-    }
-
-    .hero-text p {
-      max-width: 580px;
-
-      font-size: 16px;
-
-      line-height: 2;
-
-      color: #b9aa95;
-    }
-
-    .gold-button {
-      display: inline-flex;
-
-      align-items: center;
-      justify-content: center;
-
-      width: fit-content;
-
-      margin-top: 35px;
-
-      min-width: 250px;
-
-      min-height: 54px;
-
-      padding: 12px 28px;
-
-      border: 1px solid var(--gold-dark);
-
-      color: var(--gold-light);
-
-      background: transparent;
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 17px;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-
-      cursor: pointer;
-
-      transition: 0.35s;
-    }
-
-    .gold-button:hover {
-      background: var(--gold);
-
-      color: #090704;
-
-      box-shadow:
-        0 0 30px rgba(198, 148, 67, 0.22);
-    }
-
-    .hero-image {
-      position: relative;
-
-      min-height: 700px;
-
-      overflow: hidden;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
-    }
-
-    .hero-image::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        linear-gradient(
-          to right,
-          #050505 0%,
-          transparent 30%
-        ),
-        linear-gradient(
-          to top,
-          #050505 0%,
-          transparent 25%
-        );
-    }
-
-
-    /* =========================================================
-       TITRES SECTIONS
-    ========================================================= */
-
-    section {
-      scroll-margin-top: 110px;
-    }
-
-    .section-container {
-      width: min(1400px, 92%);
-
-      margin: auto;
-
-      padding: 100px 0;
-    }
-
-    .section-heading {
-      text-align: center;
-
-      margin-bottom: 60px;
-    }
-
-    .section-heading span {
-      display: block;
-
-      color: #806034;
-
-      text-transform: uppercase;
-
-      letter-spacing: 5px;
-
-      font-size: 12px;
-
-      margin-bottom: 12px;
-    }
-
-    .section-heading h2 {
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: clamp(38px, 5vw, 60px);
-
-      font-weight: 400;
-
-      letter-spacing: 4px;
-    }
-
-    .section-heading p {
-      max-width: 650px;
-
-      margin: 20px auto 0;
-
-      line-height: 1.8;
-
-      color: #8e8374;
-    }
-
-
-    /* =========================================================
-       COLLECTION
-    ========================================================= */
-
-    #collection {
-      background:
-        radial-gradient(
-          circle at center,
-          rgba(166, 109, 38, 0.08),
-          transparent 45%
-        );
-    }
-
-    .gallery {
-      display: grid;
-
-      grid-template-columns: repeat(4, 1fr);
-
-      gap: 20px;
-    }
-
-    .art-card {
-      background: linear-gradient(
-        145deg,
-        rgba(22, 19, 14, 0.95),
-        rgba(7, 7, 6, 0.98)
-      );
-
-      border: 1px solid var(--border);
-
-      overflow: hidden;
-
-      cursor: pointer;
-
-      position: relative;
-
-      transition:
-        transform 0.4s,
-        box-shadow 0.4s,
-        border-color 0.4s;
-    }
-
-    .art-card:hover {
-      transform: translateY(-10px);
-
-      border-color: var(--gold);
-
-      box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.65),
-        0 0 30px rgba(196, 146, 64, 0.08);
-    }
-
-    .art-image {
-      position: relative;
-
-      height: 390px;
-
-      overflow: hidden;
-    }
-
-    .art-image img {
-      height: 100%;
-
-      object-fit: cover;
-
-      transition: transform 0.8s;
-    }
-
-    .art-card:hover .art-image img {
-      transform: scale(1.07);
-    }
-
-    .art-image::after {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background: linear-gradient(
-        to top,
-        rgba(5, 5, 5, 0.9),
-        transparent 50%
-      );
-    }
-
-    .number {
-      position: absolute;
-
-      top: 18px;
-      left: 18px;
-
-      z-index: 2;
-
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      border: 1px solid rgba(220, 175, 95, 0.5);
-
-      width: 40px;
-      height: 40px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      background: rgba(5, 5, 5, 0.75);
-    }
-
-    .art-info {
-      padding: 25px;
-
-      text-align: center;
-    }
-
-    .art-info h3 {
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      font-size: 26px;
-
-      font-weight: 500;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-    }
-
-    .art-subtitle {
-      margin-top: 7px;
-
-      font-size: 12px;
-
-      letter-spacing: 2px;
-
-      color: #7c6d59;
-
-      text-transform: uppercase;
-    }
-
-    .price {
-      margin-top: 18px;
-
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 25px;
-    }
-
-    .discover {
-      display: inline-block;
-
-      margin-top: 17px;
-
-      color: #a97c3e;
-
-      font-size: 11px;
-
-      letter-spacing: 2px;
-
-      text-transform: uppercase;
-    }
-
-
-    /* =========================================================
-       HISTOIRE
-    ========================================================= */
-
-    .story {
-      background: #080807;
-
-      border-top: 1px solid rgba(198, 148, 67, 0.12);
-
-      border-bottom: 1px solid rgba(198, 148, 67, 0.12);
-    }
-
-    .story-layout {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 80px;
-
-      align-items: center;
-    }
-
-    .story-image {
-      position: relative;
-
-      padding: 15px;
-
-      border: 1px solid rgba(198, 148, 67, 0.4);
-    }
-
-    .story-image img {
-      height: 570px;
-
-      object-fit: cover;
-    }
-
-    .story-text small {
-      display: block;
-
-      color: var(--gold);
-
-      letter-spacing: 4px;
-
-      margin-bottom: 12px;
-    }
-
-    .story-text h2 {
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      font-size: 55px;
-
-      font-weight: 400;
-
-      margin-bottom: 25px;
-    }
-
-    .story-text p {
-      line-height: 2;
-
-      margin-bottom: 20px;
-
-      color: #a99d8e;
-    }
-
-
-    /* =========================================================
-       SUR MESURE
-    ========================================================= */
-
-    .custom-box {
-      min-height: 380px;
-
-      border: 1px solid rgba(198, 148, 67, 0.65);
-
-      position: relative;
-
-      overflow: hidden;
-
-      display: flex;
-
-      align-items: center;
-
-      padding: 60px;
-    }
-
-    .custom-box::before {
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(5, 5, 5, 0.98) 20%,
-          rgba(5, 5, 5, 0.75) 55%,
-          rgba(5, 5, 5, 0.2)
-        ),
-        url("naissance.jpg");
-
-      background-position: center;
-      background-size: cover;
-    }
-
-    .custom-content {
-      position: relative;
-
-      z-index: 2;
-
-      max-width: 650px;
-    }
-
-    .custom-content h2 {
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 45px;
-
-      font-weight: 400;
-
-      margin-bottom: 20px;
-    }
-
-    .custom-content p {
-      line-height: 1.9;
-
-      color: #b8aa97;
-    }
-
-
-    /* =========================================================
-       CONTACT
-    ========================================================= */
-
-    .contact {
-      padding: 90px 0;
-
-      text-align: center;
-    }
-
-    .contact h2 {
-      font-family: "Cormorant Garamond", serif;
-
-      color: var(--gold-light);
-
-      font-weight: 400;
-
-      font-size: 45px;
-    }
-
-    .contact p {
-      margin: 15px auto 35px;
-
-      max-width: 600px;
-
-      line-height: 1.8;
-    }
-
-
-    /* =========================================================
-       FOOTER
-    ========================================================= */
-
-    footer {
-      border-top: 1px solid rgba(198, 148, 67, 0.3);
-
-      padding: 55px 5% 25px;
-
-      background: #030303;
-    }
-
-    .footer-grid {
-      max-width: 1400px;
-
-      margin: auto;
-
-      display: grid;
-
-      grid-template-columns: 1.2fr 1fr 1fr;
-
-      gap: 50px;
-    }
-
-    .footer-logo {
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 31px;
-
-      letter-spacing: 4px;
-    }
-
-    .footer-description {
-      margin-top: 14px;
-
-      max-width: 320px;
-
-      line-height: 1.8;
-
-      font-size: 13px;
-    }
-
-    footer h4 {
-      color: #af8952;
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 17px;
-
-      font-weight: 400;
-
-      letter-spacing: 3px;
-
-      text-transform: uppercase;
-
-      margin-bottom: 20px;
-    }
-
-    .footer-links {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 12px;
-
-      font-size: 13px;
-    }
-
-    .footer-links a:hover {
-      color: var(--gold-light);
-    }
-
-    .socials {
-      display: flex;
-
-      gap: 16px;
-    }
-
-    .social-button {
-      width: 58px;
-      height: 58px;
-
-      border: 1px solid var(--gold-dark);
-
-      border-radius: 50%;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      color: var(--gold-light);
-
-      font-size: 22px;
-
-      transition: 0.3s;
-    }
-
-    .social-button:hover {
-      background: var(--gold);
-
-      color: #080604;
-
-      transform: translateY(-4px);
-    }
-
-    .copyright {
-      max-width: 1400px;
-
-      margin: 50px auto 0;
-
-      padding-top: 22px;
-
-      border-top: 1px solid rgba(198, 148, 67, 0.16);
-
-      text-align: center;
-
-      font-size: 12px;
-
-      color: #61594d;
-
-      letter-spacing: 1px;
-    }
-
-
-    /* =========================================================
-       MODALE PROFIL FOURMI
-    ========================================================= */
-
-    .modal {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 3000;
-
-      background: rgba(0, 0, 0, 0.9);
-
-      backdrop-filter: blur(12px);
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 25px;
-    }
-
-    .modal.active {
-      display: flex;
-
-      animation: fadeIn 0.35s ease;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
-    }
-
-    .modal-content {
-      width: min(1150px, 100%);
-
-      max-height: 90vh;
-
-      overflow-y: auto;
-
-      display: grid;
-
-      grid-template-columns: 48% 52%;
-
-      background:
-        linear-gradient(
-          145deg,
-          #11100d,
-          #060606
-        );
-
-      border: 1px solid var(--gold-dark);
-
-      box-shadow:
-        0 35px 100px rgba(0, 0, 0, 0.9);
-    }
-
-    .modal-image {
-      min-height: 650px;
-    }
-
-    .modal-image img {
-      height: 100%;
-
-      object-fit: cover;
-    }
-.modal-image iframe {
-  width: 100%;
-  height: 100%;
-  min-height: 650px;
-
-  border: none;
-
-  background: #000;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Peter Ants - Créations artistiques de fourmis miniatures.">
+<title>Peter Ants | Créations de Fourmis</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black:#050505;
+  --panel:#11100d;
+  --gold:#c69443;
+  --gold-light:#e2b86a;
+  --gold-dark:#7c5524;
+  --cream:#e7dcc8;
+  --text:#c9bdab;
 }
 
-@media (max-width: 1100px) {
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:#050505;
+  color:var(--text);
+  font-family:Montserrat,sans-serif;
+}
+body.locked { overflow:hidden; }
+a { color:inherit;text-decoration:none; }
+button,input,textarea,select { font:inherit; }
+button { cursor:pointer; }
+img { display:block;max-width:100%; }
+section { scroll-margin-top:100px; }
 
-  .modal-image iframe {
-    min-height: 450px;
+header {
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(3,3,3,.95);
+  border-bottom:1px solid rgba(198,148,67,.25);
+  backdrop-filter:blur(12px);
+}
+.navbar {
+  width:min(1400px,94%);
+  min-height:90px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+}
+.logo-main {
+  display:block;
+  font-family:"Cormorant Garamond",serif;
+  font-size:36px;
+  letter-spacing:5px;
+  color:var(--gold-light);
+}
+.logo-small {
+  font-family:"Cormorant Garamond",serif;
+  font-style:italic;
+  color:var(--gold);
+  letter-spacing:1px;
+}
+nav { display:flex;gap:30px; }
+nav a {
+  font-family:"Cormorant Garamond",serif;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#d1b98d;
+}
+nav a:hover { color:var(--gold-light); }
+.menu-toggle {
+  display:none;
+  border:0;
+  background:none;
+  color:var(--gold-light);
+  font-size:28px;
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:45% 55%;
+  min-height:calc(100vh - 90px);
+}
+.hero-text {
+  padding:80px 8%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+.eyebrow {
+  color:var(--gold);
+  letter-spacing:5px;
+  font-family:"Cormorant Garamond",serif;
+}
+.hero h1 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:clamp(65px,7vw,115px);
+  line-height:.9;
+  font-weight:500;
+  letter-spacing:5px;
+  margin:24px 0;
+}
+.hero h2 {
+  font-family:"Cormorant Garamond",serif;
+  color:#dab471;
+  letter-spacing:5px;
+  font-weight:400;
+}
+.hero p { line-height:2;max-width:570px; }
+.hero-image {
+  min-height:600px;
+  background:#111;
+  position:relative;
+  overflow:hidden;
+}
+.hero-image img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+}
+.hero-image::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to right,#050505,transparent 35%);
+  pointer-events:none;
+}
+
+.gold-button {
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:54px;
+  padding:12px 28px;
+  margin-top:28px;
+  width:fit-content;
+  border:1px solid var(--gold-dark);
+  background:transparent;
+  color:var(--gold-light);
+  font-family:"Cormorant Garamond",serif;
+  font-size:18px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+}
+.gold-button:hover {
+  background:var(--gold);
+  color:#050505;
+}
+
+.container {
+  width:min(1400px,92%);
+  margin:auto;
+  padding:90px 0;
+}
+.heading { text-align:center;margin-bottom:55px; }
+.heading small {
+  color:#9a753c;
+  letter-spacing:5px;
+  text-transform:uppercase;
+}
+.heading h2 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:clamp(42px,5vw,65px);
+  font-weight:400;
+  letter-spacing:4px;
+  margin:12px 0;
+}
+.heading p {
+  max-width:680px;
+  margin:20px auto;
+  line-height:1.9;
+  color:#988b79;
+}
+
+.gallery {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:20px;
+}
+.art-card {
+  border:1px solid rgba(198,148,67,.55);
+  background:linear-gradient(145deg,#16130e,#070706);
+  overflow:hidden;
+  cursor:pointer;
+  transition:transform .3s,border-color .3s;
+}
+.art-card:hover {
+  transform:translateY(-6px);
+  border-color:var(--gold-light);
+}
+.art-image {
+  height:390px;
+  position:relative;
+  background:#100e0a;
+}
+.art-image img {
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.art-number {
+  position:absolute;
+  top:15px;
+  left:15px;
+  padding:10px;
+  background:#050505c9;
+  border:1px solid var(--gold-dark);
+  color:var(--gold-light);
+}
+.art-info {
+  padding:25px 15px;
+  text-align:center;
+}
+.art-info h3 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:27px;
+  font-weight:500;
+  margin:0;
+}
+.art-subtitle {
+  color:#8c795d;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:11px;
+  margin:10px 0;
+}
+.price {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:26px;
+  margin-top:18px;
+}
+.discover {
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-top:14px;
+}
+
+.story {
+  background:#080807;
+  border-block:1px solid rgba(198,148,67,.15);
+}
+.story-layout {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:70px;
+  align-items:center;
+}
+.story-image {
+  border:1px solid var(--gold-dark);
+  padding:14px;
+}
+.story-image img {
+  width:100%;
+  max-height:570px;
+  object-fit:contain;
+}
+.story-text small {
+  color:var(--gold);
+  letter-spacing:4px;
+}
+.story-text h2 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:clamp(38px,5vw,55px);
+  font-weight:400;
+}
+.story-text p { line-height:2; }
+
+.custom-box {
+  min-height:400px;
+  border:1px solid var(--gold-dark);
+  padding:65px;
+  display:flex;
+  align-items:center;
+  background:
+    linear-gradient(90deg,#050505 15%,#050505b8 65%,#05050555),
+    url("naissance.jpg") center/cover;
+}
+.custom-content { max-width:650px; }
+.custom-content h2 {
+  color:var(--gold-light);
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  font-weight:400;
+}
+.custom-content p { line-height:2; }
+
+.contact { text-align:center; }
+.contact h2 {
+  color:var(--gold-light);
+  font-family:"Cormorant Garamond",serif;
+  font-size:48px;
+  font-weight:400;
+}
+.contact p { line-height:1.9; }
+
+footer {
+  padding:55px 5% 25px;
+  border-top:1px solid var(--gold-dark);
+  background:#030303;
+}
+.footer-grid {
+  max-width:1400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.2fr 1fr 1fr;
+  gap:50px;
+}
+.footer-logo {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:32px;
+  letter-spacing:4px;
+}
+.footer-links { display:grid;gap:12px; }
+footer h4 {
+  color:var(--gold);
+  font-family:"Cormorant Garamond",serif;
+  letter-spacing:2px;
+}
+.socials { display:flex;gap:12px;flex-wrap:wrap; }
+.socials a {
+  border:1px solid var(--gold-dark);
+  color:var(--gold-light);
+  padding:12px;
+}
+.copyright {
+  text-align:center;
+  border-top:1px solid #302515;
+  padding-top:22px;
+  margin-top:45px;
+  font-size:12px;
+}
+
+/* MODALE OEUVRE */
+.modal {
+  position:fixed;
+  inset:0;
+  z-index:3000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:#000e;
+}
+.modal.active { display:flex; }
+.modal-content {
+  width:min(1100px,100%);
+  max-height:90vh;
+  overflow:auto;
+  display:grid;
+  grid-template-columns:48% 52%;
+  border:1px solid var(--gold-dark);
+  background:#0b0a08;
+}
+.modal-media {
+  min-height:550px;
+  background:#000;
+}
+.modal-media img,
+.modal-media iframe {
+  width:100%;
+  height:100%;
+  min-height:550px;
+  object-fit:contain;
+  border:0;
+}
+.modal-info { padding:45px;position:relative; }
+.modal-info h2 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold-light);
+  font-size:50px;
+  font-weight:400;
+}
+.modal-info h3 {
+  font-family:"Cormorant Garamond",serif;
+  color:var(--gold);
+  font-size:24px;
+  font-weight:400;
+}
+.modal-info p { line-height:1.9;white-space:pre-line; }
+.modal-section {
+  margin-top:22px;
+  padding-top:18px;
+  border-top:1px solid #5c4528;
+}
+.close-modal {
+  position:absolute;
+  right:18px;
+  top:18px;
+  background:none;
+  border:1px solid var(--gold-dark);
+  color:var(--gold-light);
+  padding:8px 14px;
+  font-size:24px;
+}
+
+/* FORMULAIRE */
+#commandeModal {
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:#000e;
+  padding:15px;
+}
+#commandeModal.active { display:flex; }
+.commande-panel {
+  position:relative;
+  width:min(760px,100%);
+  max-height:94vh;
+  overflow:auto;
+  padding:40px;
+  background:linear-gradient(145deg,#15120d,#050505);
+  border:1px solid var(--gold);
+}
+.commande-panel h2 {
+  color:var(--gold-light);
+  font-family:"Cormorant Garamond",serif;
+  font-size:45px;
+  font-weight:400;
+  margin:10px 0 20px;
+}
+.commande-panel p { line-height:1.9;font-size:14px; }
+.commande-close {
+  position:absolute;
+  right:14px;
+  top:14px;
+  background:none;
+  color:var(--gold-light);
+  border:1px solid var(--gold-dark);
+  padding:7px 13px;
+  font-size:24px;
+}
+.form-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-top:25px;
+}
+.field { display:grid;gap:8px;min-width:0; }
+.field.full { grid-column:1/-1; }
+.field label { color:var(--gold-light);font-size:12px; }
+.field input,.field textarea,.field select {
+  width:100%;
+  padding:13px;
+  min-height:46px;
+  border:1px solid #73532c;
+  background:#0b0a08;
+  color:var(--cream);
+  font-size:15px;
+}
+.field textarea { min-height:110px;resize:vertical; }
+.form-note {
+  padding:20px;
+  margin:22px 0;
+  border:1px solid #73532c;
+  line-height:1.9;
+  font-size:13px;
+}
+.consent {
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:12px;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+.submit {
+  width:100%;
+  padding:16px;
+  background:var(--gold);
+  color:#050505;
+  border:0;
+  font-weight:600;
+}
+.submit:disabled { opacity:.55; }
+#commandeStatus {
+  margin-top:18px;
+  line-height:1.8;
+  font-size:13px;
+  white-space:pre-line;
+}
+#photoPreview {
+  display:none;
+  max-height:230px;
+  object-fit:contain;
+  margin-top:10px;
+}
+
+@media(max-width:1100px) {
+  .gallery { grid-template-columns:repeat(2,1fr); }
+  .hero { grid-template-columns:1fr; }
+  .hero-image { min-height:450px;height:55vh; }
+  .story-layout { grid-template-columns:1fr; }
+  .modal-content { grid-template-columns:1fr; }
+  .modal-media,.modal-media img,.modal-media iframe {
+    min-height:350px;
+    max-height:450px;
   }
-
 }
-
-@media (max-width: 620px) {
-
-  .modal-image iframe {
-    min-height: 330px;
+@media(max-width:850px) {
+  .navbar { min-height:75px; }
+  .menu-toggle { display:block; }
+  nav {
+    display:none;
+    position:absolute;
+    top:75px;
+    left:0;
+    right:0;
+    padding:25px;
+    background:#080807;
+    flex-direction:column;
   }
-
+  nav.active { display:flex; }
+  .footer-grid { grid-template-columns:1fr; }
 }
-    .modal-info {
-      position: relative;
-
-      padding: 60px;
-    }
-
-    .close-modal {
-      position: absolute;
-
-      top: 20px;
-      right: 25px;
-
-      width: 42px;
-      height: 42px;
-
-      background: transparent;
-
-      border: 1px solid #624822;
-
-      color: var(--gold-light);
-
-      font-size: 24px;
-
-      cursor: pointer;
-
-      transition: 0.3s;
-    }
-
-    .close-modal:hover {
-      background: var(--gold);
-
-      color: black;
-    }
-
-    .modal-number {
-      color: #76552d;
-
-      font-size: 12px;
-
-      letter-spacing: 4px;
-
-      margin-bottom: 10px;
-    }
-
-    .modal-info h2 {
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 52px;
-
-      font-weight: 400;
-
-      margin-bottom: 5px;
-    }
-
-    .modal-subtitle {
-      color: #907248;
-
-      text-transform: uppercase;
-
-      letter-spacing: 3px;
-
-      font-size: 12px;
-
-      margin-bottom: 25px;
-    }
-
-    .modal-price {
-      color: var(--gold-light);
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 30px;
-
-      margin-bottom: 30px;
-    }
-
-    .modal-section {
-      border-top: 1px solid rgba(198, 148, 67, 0.25);
-
-      padding-top: 22px;
-
-      margin-top: 22px;
-    }
-
-    .modal-section h3 {
-      color: #c99c58;
-
-      font-family: "Cormorant Garamond", serif;
-
-      font-size: 22px;
-
-      font-weight: 400;
-
-      margin-bottom: 10px;
-    }
-
-    .modal-section p {
-      line-height: 1.85;
-
-      font-size: 14px;
-
-      color: #aaa092;
-    }
-
-
-    /* =========================================================
-       RESPONSIVE
-    ========================================================= */
-
-    @media (max-width: 1100px) {
-
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-text {
-        min-height: 600px;
-
-        position: relative;
-
-        z-index: 2;
-      }
-
-      .hero-image {
-        height: 650px;
-      }
-
-      .story-layout {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-content {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-image {
-        min-height: 400px;
-        height: 450px;
-      }
-
-    }
-
-
-    @media (max-width: 850px) {
-
-      .navbar {
-        min-height: 75px;
-      }
-
-      nav {
-        display: none;
-
-        position: absolute;
-
-        left: 0;
-        top: 75px;
-
-        width: 100%;
-
-        background: #080807;
-
-        padding: 30px;
-
-        flex-direction: column;
-
-        border-bottom: 1px solid var(--gold-dark);
-      }
-
-      nav.active {
-        display: flex;
-      }
-
-      .menu-button {
-        display: block;
-      }
-
-      .logo-main {
-        font-size: 27px;
-      }
-
-      .hero {
-        padding-top: 75px;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-    }
-
-
-    @media (max-width: 620px) {
-
-      .navbar {
-        padding: 0 20px;
-      }
-
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .art-image {
-        height: 430px;
-      }
-
-      .hero-text {
-        padding: 70px 25px;
-      }
-
-      .hero h1 {
-        font-size: 64px;
-      }
-
-      .hero h2 {
-        font-size: 20px;
-
-        letter-spacing: 4px;
-      }
-
-      .hero-image {
-        height: 500px;
-
-        min-height: auto;
-      }
-
-      .section-container {
-        width: 90%;
-
-        padding: 75px 0;
-      }
-
-      .custom-box {
-        padding: 35px 25px;
-      }
-
-      .custom-content h2 {
-        font-size: 36px;
-      }
-
-      .story-text h2 {
-        font-size: 42px;
-      }
-
-      .story-image img {
-        height: 450px;
-      }
-
-      .modal {
-        padding: 10px;
-      }
-
-      .modal-image {
-        height: 330px;
-
-        min-height: 330px;
-      }
-
-      .modal-info {
-        padding: 40px 25px;
-      }
-
-      .modal-info h2 {
-        font-size: 38px;
-      }
-
-    }
-
-  </style>
-
+@media(max-width:620px) {
+  .gallery { grid-template-columns:1fr; }
+  .art-image { height:430px; }
+  .hero-text { padding:65px 6%; }
+  .hero-image { height:360px;min-height:360px; }
+  .container { padding:65px 0; }
+  .custom-box { padding:30px; }
+  .custom-content h2 { font-size:36px; }
+  .modal-info { padding:45px 22px 25px; }
+  .modal-info h2 { font-size:38px; }
+  .commande-panel { padding:55px 20px 25px; }
+  .form-grid { grid-template-columns:1fr; }
+  .field.full { grid-column:auto; }
+}
+</style>
 </head>
-
 
 <body>
 
-
-<!-- =========================================================
-     HEADER
-========================================================= -->
-
 <header>
-
   <div class="navbar">
-
-    <a href="#accueil" class="logo">
-
-      <div class="logo-main">
-        PETER ANTS
-      </div>
-
-      <span class="logo-small">
-        Créations de Fourmis
-      </span>
-
+    <a href="#accueil">
+      <span class="logo-main">PETER ANTS</span>
+      <span class="logo-small">Créations de Fourmis</span>
     </a>
 
+    <button class="menu-toggle" id="menuToggle"
+      aria-label="Ouvrir le menu"
+      aria-expanded="false">☰</button>
 
     <nav id="navigation">
-
-      <a href="#accueil">
-        Accueil
-      </a>
-
-      <a href="#collection">
-        Collection
-      </a>
-
-      <a href="#histoire">
-        À propos
-      </a>
-
-      <a href="#sur-mesure">
-        Sur mesure
-      </a>
-
-      <a href="#contact">
-        Contact
-      </a>
-
+      <a href="#accueil">Accueil</a>
+      <a href="#collection">Collection</a>
+      <a href="#apropos">À propos</a>
+      <a href="#sur-mesure">Sur mesure</a>
+      <a href="#contact">Contact</a>
     </nav>
-
-
-    <button
-      class="menu-button"
-      onclick="toggleMenu()"
-      aria-label="Ouvrir le menu"
-    >
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
   </div>
-
 </header>
-
-
-
-<!-- =========================================================
-     HERO
-========================================================= -->
 
 <main>
 
-<section
-  class="hero"
-  id="accueil"
->
-
+<section class="hero" id="accueil">
   <div class="hero-text">
-
-    <div class="hero-label">
-      CRÉATIONS ARTISTIQUES
-    </div>
-
-    <h1>
-      PETER<br>
-      ANTS
-    </h1>
-
-    <div class="ornament"></div>
-
-    <h2>
-      L'ART EN MINUSCULE
-    </h2>
-
-    <p>
+    <span class="eyebrow" id="heroLabel">CRÉATIONS ARTISTIQUES</span>
+    <h1 id="heroTitre">PETER<br>ANTS</h1>
+    <h2 id="heroSousTitre">L'ART EN MINUSCULE</h2>
+    <p id="heroDescription">
       Des fourmis sculptées et mises en scène dans des
       univers miniatures inspirés de notre quotidien.
-      Chaque œuvre raconte une histoire et transforme
-      l'univers des fourmis en miroir de la vie humaine.
     </p>
-
-    <a
-      href="#collection"
-      class="gold-button"
-    >
+    <a class="gold-button" href="#collection">
       Découvrir la collection
     </a>
-
   </div>
-
 
   <div class="hero-image">
-
-    <img
-      src="guide.jpg"
-      alt="La Fourmi Guide Peter Ants"
-    >
-
+    <img id="heroImage" src="guide.jpg"
+         alt="Création artistique Peter Ants">
   </div>
-
 </section>
-
-
-
-<!-- =========================================================
-     COLLECTION
-========================================================= -->
 
 <section id="collection">
-
-  <div class="section-container">
-
-    <div class="section-heading">
-
-      <span>
-        Peter Ants
-      </span>
-
-      <h2>
-        LES CRÉATIONS
-      </h2>
-
-      <p>
+  <div class="container">
+    <div class="heading">
+      <small>Galerie artistique</small>
+      <h2 id="collectionTitre">LES CRÉATIONS</h2>
+      <p id="collectionDescription">
         Entrez dans l'univers de Peter Ants.
-        Cliquez sur une œuvre pour découvrir son histoire
-        et le parallèle qu'elle établit avec notre propre vie.
+        Cliquez sur une œuvre pour découvrir son histoire.
       </p>
-
     </div>
-
 
     <div class="gallery" id="paGallery">
-  <p>Chargement des créations...</p>
-</div>
-
+      <p>Chargement des créations...</p>
+    </div>
   </div>
-
 </section>
 
-
-
-<!-- =========================================================
-     HISTOIRE / A PROPOS
-========================================================= -->
-
-<section
-  class="story"
-  id="histoire"
->
-
-  <div class="section-container">
-
-    <div class="story-layout">
-
-      <div class="story-image">
-
-        <img
-          src="tank.jpg"
-          alt="Univers Peter Ants"
-        >
-
-      </div>
-
-
-      <div class="story-text">
-
-        <small>
-          L'UNIVERS PETER ANTS
-        </small>
-
-        <h2>
-          Des petites fourmis.<br>
-          De grandes histoires.
-        </h2>
-
-        <p>
-          Peter Ants détourne l'image de la fourmi pour
-          raconter notre propre quotidien.
-        </p>
-
-        <p>
-          Travail, naissance, entraide, ambition, orientation,
-          service et vie collective deviennent des scènes
-          artistiques miniatures.
-        </p>
-
-        <p>
-          Dans chaque création, la fourmi prend une place
-          habituellement réservée à l'être humain.
-          Elle devient alors un personnage capable de raconter
-          une histoire universelle.
-        </p>
-
-        <a
-          href="#collection"
-          class="gold-button"
-        >
-          Voir les œuvres
-        </a>
-
-      </div>
-
+<section class="story" id="apropos">
+  <div class="container story-layout">
+    <div class="story-image">
+      <img id="aproposImage" src="tank.jpg"
+           alt="L'univers Peter Ants">
     </div>
 
+    <div class="story-text">
+      <small>L'UNIVERS PETER ANTS</small>
+      <h2 id="aproposTitre">
+        Des petites fourmis. De grandes histoires.
+      </h2>
+      <p id="aproposP1"></p>
+      <p id="aproposP2"></p>
+      <p id="aproposP3"></p>
+    </div>
   </div>
-
 </section>
-
-
-
-<!-- =========================================================
-     SUR MESURE
-========================================================= -->
 
 <section id="sur-mesure">
-
-  <div class="section-container">
-
-    <div class="custom-box">
-
+  <div class="container">
+    <div class="custom-box" id="customBox">
       <div class="custom-content">
-
-        <h2>
+        <h2 id="surMesureTitre">
           Une création unique pour vous
         </h2>
-
-        <p>
-          Une profession, un souvenir, une passion ou une histoire
-          particulière ? Peter Ants imagine des scènes de fourmis
-          personnalisées et crée une œuvre autour de votre univers.
+        <p id="surMesureDescription">
+          Peter Ants imagine des scènes de fourmis
+          personnalisées autour de votre univers.
         </p>
-
-        <a
-          href="#contact"
-          class="gold-button"
-        >
+        <button class="gold-button" type="button"
+                id="ouvrirCommande">
           Commander sur mesure
-        </a>
-
+        </button>
       </div>
-
     </div>
-
   </div>
-
 </section>
 
-
-
-<!-- =========================================================
-     CONTACT
-========================================================= -->
-
-<section
-  class="contact"
-  id="contact"
->
-
-  <div class="section-container">
-
-    <div class="section-heading">
-
-      <span>
-        Une question ?
-      </span>
-
-      <h2>
-        CONTACTER PETER ANTS
-      </h2>
-
-      <p>
-        Pour l'achat d'une œuvre, une création personnalisée
-        ou une demande d'information.
-      </p>
-
-    </div>
-
-    <!-- REMPLACE L'EMAIL -->
-
-    <a
-      href="mailto:contact@peterants.fr"
-      class="gold-button"
-    >
-      Nous contacter
+<section id="contact">
+  <div class="container contact">
+    <h2 id="contactTitre">CONTACTER PETER ANTS</h2>
+    <p id="contactDescription">
+      Pour l'achat d'une œuvre, une création personnalisée
+      ou une demande d'information.
+    </p>
+    <a class="gold-button" id="contactEmail"
+       href="mailto:Lionel.cassis@free.fr">
+      Envoyer un e-mail
     </a>
-
   </div>
-
 </section>
 
 </main>
 
-
-
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
-
   <div class="footer-grid">
-
-
     <div>
-
-      <div class="footer-logo">
-        PETER ANTS
-      </div>
-
-      <div class="logo-small">
-        Créations de Fourmis
-      </div>
-
-      <p class="footer-description">
+      <div class="footer-logo">PETER ANTS</div>
+      <p id="footerDescription">
         Des œuvres miniatures qui racontent
         de grandes histoires.
       </p>
-
     </div>
 
-
-
     <div>
-
-      <h4>
-        Navigation
-      </h4>
-
+      <h4>Navigation</h4>
       <div class="footer-links">
-
-        <a href="#accueil">
-          Accueil
-        </a>
-
-        <a href="#collection">
-          Les créations
-        </a>
-
-        <a href="#histoire">
-          À propos
-        </a>
-
-        <a href="#sur-mesure">
-          Commande sur mesure
-        </a>
-
+        <a href="#accueil">Accueil</a>
+        <a href="#collection">Collection</a>
+        <a href="#apropos">À propos</a>
+        <a href="#sur-mesure">Sur mesure</a>
+        <a href="#contact">Contact</a>
       </div>
-
     </div>
-
-
 
     <div>
-
-      <h4>
-        Suivez-nous
-      </h4>
-
-      <div class="socials">
-
-
-        <!-- INSTAGRAM -->
-
-        <a
-          class="social-button"
-          href="https://instagram.com/"
-          target="_blank"
-          aria-label="Instagram"
-        >
-
-          <i class="fa-brands fa-instagram"></i>
-
-        </a>
-
-
-
-        <!-- FACEBOOK -->
-
-        <a
-          class="social-button"
-          href="https://facebook.com/"
-          target="_blank"
-          aria-label="Facebook"
-        >
-
-          <i class="fa-brands fa-facebook-f"></i>
-
-        </a>
-
-
-
-        <!-- GOOGLE -->
-
-        <a
-          class="social-button"
-          href="https://google.com/"
-          target="_blank"
-          aria-label="Google"
-        >
-
-          <i class="fa-brands fa-google"></i>
-
-        </a>
-
-
-      </div>
-
+      <h4>Réseaux sociaux</h4>
+      <div class="socials" id="socialLinks"></div>
     </div>
-
-
   </div>
-
 
   <div class="copyright">
-
-    © <span id="year"></span>
-    Peter Ants — Tous droits réservés
-
+    © <span id="year"></span> Peter Ants.
+    Tous droits réservés.
   </div>
-
 </footer>
 
-
-
-<!-- =========================================================
-     MODALE
-========================================================= -->
-
-<div
-  class="modal"
-  id="antModal"
-  onclick="closeFromBackground(event)"
->
-
+<!-- MODALE DES OEUVRES -->
+<div class="modal" id="antModal"
+     role="dialog" aria-modal="true"
+     aria-labelledby="modalTitle">
   <div class="modal-content">
-
-
-  <div class="modal-image" id="modalMedia">
-
-  <img
-    id="modalImage"
-    src=""
-    alt=""
-  >
-
-  <iframe
-    id="modalVideo"
-    src=""
-    title="Présentation de l'œuvre"
-    frameborder="0"
-    allow="autoplay; encrypted-media; picture-in-picture"
-    allowfullscreen
-    style="display:none;"
-  ></iframe>
-
-</div>
-
+    <div class="modal-media">
+      <img id="modalImage" alt="">
+      <iframe id="modalVideo" title="Vidéo de l'œuvre"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen
+              style="display:none"></iframe>
+    </div>
 
     <div class="modal-info">
+      <button class="close-modal" id="fermerOeuvre"
+              aria-label="Fermer">×</button>
 
-      <button
-        class="close-modal"
-        onclick="closeModal()"
-      >
-        ×
-      </button>
-
-
-      <div
-        class="modal-number"
-        id="modalNumber"
-      ></div>
-
-
+      <small id="modalNumber"></small>
       <h2 id="modalTitle"></h2>
-
-
-      <div
-        class="modal-subtitle"
-        id="modalSubtitle"
-      ></div>
-
-
-      <div
-        class="modal-price"
-        id="modalPrice"
-      ></div>
-
+      <p id="modalSubtitle"></p>
+      <div class="price" id="modalPrice"></div>
 
       <div class="modal-section">
-
-        <h3>
-          L'histoire de la scène
-        </h3>
-
+        <h3>L'histoire de l'œuvre</h3>
         <p id="modalStory"></p>
-
       </div>
 
-
       <div class="modal-section">
-
-        <h3>
-          Le parallèle avec notre vie
-        </h3>
-
+        <h3>Le parallèle avec notre vie</h3>
         <p id="modalParallel"></p>
-
       </div>
-
 
       <div class="modal-section">
-
-        <h3>
-          Le message de l'œuvre
-        </h3>
-
+        <h3>Le message</h3>
         <p id="modalMessage"></p>
-
       </div>
-
-
-      <a
-        href="#contact"
-        class="gold-button"
-        onclick="closeModal()"
-      >
-        Demander cette œuvre
-      </a>
-
-
     </div>
-
   </div>
-
 </div>
 
-
-
-<!-- =========================================================
-     JAVASCRIPT
-========================================================= -->
-
-<script>
-
-/* =========================================================
-   PETER ANTS - CONNEXION GOOGLE SHEETS V3
-   Compatible GitHub Pages / Apps Script JSONP
-========================================================= */
-
-const PA_API_URL =
-  "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
-
-const ants = {};
-
-
-/* =========================================================
-   CONVERSION DES IMAGES GOOGLE DRIVE
-========================================================= */
-
-function paImageUrl(url) {
-
-  if (!url) return "";
-
-  url = String(url).trim();
-
-  const match = url.match(
-    /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/
-  );
-
-  if (match) {
-    return "https://drive.google.com/thumbnail?id=" +
-      match[1] + "&sz=w1600";
-  }
-
-  return url;
-}
-
-
-/* =========================================================
-   CONVERSION DES VIDEOS YOUTUBE
-========================================================= */
-
-function paVideoUrl(url) {
-
-  if (!url) return "";
-
-  try {
-
-    const u = new URL(url);
-    let id = "";
-
-    const host = u.hostname.toLowerCase();
-
-    if (
-      host === "youtube.com" ||
-      host === "www.youtube.com" ||
-      host === "m.youtube.com"
-    ) {
-
-      id = u.searchParams.get("v") ||
-        (u.pathname.match(
-          /^\/(?:embed|shorts|live)\/([\w-]{11})/
-        ) || [])[1] || "";
-
-    } else if (
-      host === "youtu.be" ||
-      host === "www.youtu.be"
-    ) {
-
-      id = u.pathname.split("/")[1];
-
-    }
-
-    if (!/^[\w-]{11}$/.test(id)) return "";
-
-    return "https://www.youtube.com/embed/" +
-      id +
-      "?autoplay=1&mute=1&playsinline=1&rel=0";
-
-  } catch (e) {
-
-    return "";
-
-  }
-}
-
-
-/* =========================================================
-   CREATION AUTOMATIQUE DES CARTES
-========================================================= */
-
-function paCreerCarte(ant, index) {
-
-  const card = document.createElement("article");
-
-  card.className = "art-card";
-
-  card.addEventListener("click", function() {
-    openAnt(ant.id);
-  });
-
-
-  const media = document.createElement("div");
-  media.className = "art-image";
-
-
-  const numero = document.createElement("span");
-  numero.className = "number";
-
-  numero.textContent =
-    String(index + 1).padStart(2, "0");
-
-
-  const image = document.createElement("img");
-
-  image.src = ant.image || "";
-  image.alt = ant.title || "Création Peter Ants";
-  image.loading = "lazy";
-
-
-  media.append(numero, image);
-
-
-  const info = document.createElement("div");
-  info.className = "art-info";
-
-
-  const titre = document.createElement("h3");
-  titre.textContent = ant.title || "";
-
-
-  const sousTitre = document.createElement("div");
-  sousTitre.className = "art-subtitle";
-  sousTitre.textContent = ant.subtitle || "";
-
-
-  const prix = document.createElement("div");
-  prix.className = "price";
-  prix.textContent = ant.price || "";
-
-
-  const lien = document.createElement("span");
-  lien.className = "discover";
-  lien.textContent = "Découvrir l'œuvre →";
-
-
-  info.append(titre, sousTitre, prix, lien);
-
-  card.append(media, info);
-
-  return card;
-}
-
-
-/* =========================================================
-   CHARGEMENT JSONP - SANS FETCH / SANS CORS
-========================================================= */
-
-function paChargerCreations() {
-
-  const galerie =
-    document.getElementById("paGallery");
-
-  if (!galerie) {
-    console.error("Galerie paGallery introuvable.");
-    return;
-  }
-
-  const callbackName =
-    "PA_JSONP_" + Date.now() + "_" +
-    Math.floor(Math.random() * 100000);
-
-  const script = document.createElement("script");
-
-  let termine = false;
-
-  const timeout = setTimeout(function() {
-
-    terminer(
-      new Error("Délai de chargement dépassé")
-    );
-
-  }, 15000);
-
-
-  function terminer(erreur) {
-
-    if (termine) return;
-
-    termine = true;
-
-    clearTimeout(timeout);
-
-    script.remove();
-
-    delete window[callbackName];
-
-    if (erreur) {
-
-      console.error(
-        "Peter Ants - Erreur API :",
-        erreur
-      );
-
-      galerie.textContent =
-        "Impossible de charger les créations. " +
-        "Veuillez réessayer ultérieurement.";
-
-    }
-  }
-
-
-  window[callbackName] = function(data) {
-
-    if (
-      !data ||
-      data.success !== true ||
-      !Array.isArray(data.creations)
-    ) {
-
-      terminer(
-        new Error("Réponse API invalide")
-      );
-
-      return;
-    }
-
-
-    Object.keys(ants).forEach(function(id) {
-      delete ants[id];
-    });
-
-
-    const fragment =
-      document.createDocumentFragment();
-
-
-    const creations = data.creations
-
-      .filter(function(row) {
-        return row.id && row.title;
-      })
-
-      .sort(function(a, b) {
-        return Number(a.ordre || 0) -
-               Number(b.ordre || 0);
-      });
-
-
-    creations.forEach(function(row, index) {
-
-      const ant = {
-
-        ...row,
-
-        image: paImageUrl(row.image),
-
-        video: paVideoUrl(row.video)
-
-      };
-
-
-      ants[ant.id] = ant;
-
-      fragment.appendChild(
-        paCreerCarte(ant, index)
-      );
-
-    });
-
-
-    galerie.replaceChildren(fragment);
-
-
-    if (!creations.length) {
-
-      galerie.textContent =
-        "Aucune création active actuellement.";
-
-    }
-
-
-    terminer();
-
-
-    console.log(
-      "Peter Ants : " +
-      creations.length +
-      " œuvres chargées depuis Google Sheets."
-    );
-
-  };
-
-
-  script.onerror = function() {
-
-    terminer(
-      new Error("Chargement du script impossible")
-    );
-
-  };
-
-
-  script.src =
-    PA_API_URL +
-    "?callback=" +
-    encodeURIComponent(callbackName) +
-    "&t=" + Date.now();
-
-
-  document.head.appendChild(script);
-
-}
-
-
-/* =========================================================
-   OUVERTURE DU PROFIL D'UNE ŒUVRE
-========================================================= */
-
-function openAnt(id) {
-
-  const ant = ants[id];
-
-  if (!ant) return;
-
-
-  const modalImage =
-    document.getElementById("modalImage");
-
-  const modalVideo =
-    document.getElementById("modalVideo");
-
-
-  document.getElementById("modalNumber").textContent =
-    ant.number || "";
-
-  document.getElementById("modalTitle").textContent =
-    ant.title || "";
-
-  document.getElementById("modalSubtitle").textContent =
-    ant.subtitle || "";
-
-  document.getElementById("modalPrice").textContent =
-    ant.price || "";
-
-  document.getElementById("modalStory").textContent =
-    ant.story || "";
-
-  document.getElementById("modalParallel").textContent =
-    ant.parallel || "";
-
-  document.getElementById("modalMessage").textContent =
-    ant.message || "";
-
-
-  /* VIDEO OU IMAGE */
-
-  if (ant.video) {
-
-    modalImage.style.display = "none";
-
-    modalVideo.style.display = "block";
-
-    modalVideo.src = ant.video;
-
-  } else {
-
-    modalVideo.src = "";
-
-    modalVideo.style.display = "none";
-
-    modalImage.style.display = "block";
-
-    modalImage.src = ant.image || "";
-
-    modalImage.alt = ant.title || "";
-
-  }
-
-
-  document
-    .getElementById("antModal")
-    .classList
-    .add("active");
-
-
-  document.body.style.overflow = "hidden";
-
-}
-
-
-/* =========================================================
-   FERMETURE DE LA MODALE
-========================================================= */
-
-function closeModal() {
-
-  document
-    .getElementById("antModal")
-    .classList
-    .remove("active");
-
-
-  const modalVideo =
-    document.getElementById("modalVideo");
-
-  modalVideo.src = "";
-
-  document.body.style.overflow = "";
-
-}
-
-
-/* =========================================================
-   FERMETURE EN CLIQUANT SUR LE FOND
-========================================================= */
-
-function closeFromBackground(event) {
-
-  if (event.target.id === "antModal") {
-    closeModal();
-  }
-
-}
-
-
-/* =========================================================
-   FERMETURE AVEC ECHAP
-========================================================= */
-
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Escape") {
-      closeModal();
-    }
-
-  }
-);
-
-
-/* =========================================================
-   MENU MOBILE
-========================================================= */
-
-function toggleMenu() {
-
-  document
-    .getElementById("navigation")
-    .classList
-    .toggle("active");
-
-}
-
-
-document
-  .querySelectorAll("#navigation a")
-  .forEach(function(link) {
-
-    link.addEventListener(
-      "click",
-      function() {
-
-        document
-          .getElementById("navigation")
-          .classList
-          .remove("active");
-
-      }
-    );
-
-  });
-
-
-/* =========================================================
-   ANNEE AUTOMATIQUE
-========================================================= */
-
-document.getElementById("year").textContent =
-  new Date().getFullYear();
-
-
-/* =========================================================
-   CHARGEMENT AUTOMATIQUE GOOGLE SHEETS
-========================================================= */
-
-if (document.readyState === "loading") {
-
-  document.addEventListener(
-    "DOMContentLoaded",
-    paChargerCreations
-  );
-
-} else {
-
-  paChargerCreations();
-
-}
-
-
-    
-</script>
-
-<!-- =========================================================
-     PETER ANTS - FORMULAIRE COMMANDE SUR MESURE
-     VERSION GITHUB PAGES
-     A COLLER JUSTE AVANT </body>
-========================================================= -->
-
-<style>
-  #paCommandeModal {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    background: rgba(0, 0, 0, .92);
-    backdrop-filter: blur(12px);
-  }
-
-  #paCommandeModal.pa-open {
-    display: flex;
-  }
-
-  .pa-commande-panel {
-    position: relative;
-    width: min(760px, 100%);
-    max-height: 94dvh;
-    overflow-y: auto;
-    padding: 42px;
-    background: linear-gradient(145deg, #15120d, #050505);
-    border: 1px solid #9d7135;
-    box-shadow: 0 25px 90px rgba(0,0,0,.8);
-    color: #c9bdab;
-    font-family: "Montserrat", sans-serif;
-  }
-
-  .pa-commande-close {
-    position: absolute;
-    right: 15px;
-    top: 15px;
-    width: 40px;
-    height: 40px;
-    border: 1px solid #7c5524;
-    background: transparent;
-    color: #e2b86a;
-    font-size: 25px;
-    cursor: pointer;
-  }
-
-  .pa-commande-heading {
-    text-align: center;
-    margin-bottom: 28px;
-  }
-
-  .pa-commande-heading small {
-    color: #c69443;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-
-  .pa-commande-heading h2 {
-    margin: 15px 0;
-    color: #e2b86a;
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(35px, 6vw, 51px);
-    font-weight: 400;
-  }
-
-  .pa-commande-heading p {
-    line-height: 1.9;
-    font-size: 13px;
-    color: #b9aa95;
-  }
-
-  .pa-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-  }
-
-  .pa-form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    min-width: 0;
-  }
-
-  .pa-form-field.pa-full {
-    grid-column: 1 / -1;
-  }
-
-  .pa-form-field label {
-    color: #dab471;
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
-
-  .pa-form-field input,
-  .pa-form-field select,
-  .pa-form-field textarea {
-    width: 100%;
-    min-height: 48px;
-    padding: 13px;
-    border: 1px solid rgba(198,148,67,.45);
-    border-radius: 0;
-    outline: none;
-    background: #0b0a08;
-    color: #e7dcc8;
-    font-family: inherit;
-    font-size: 14px;
-  }
-
-  .pa-form-field textarea {
-    resize: vertical;
-    min-height: 110px;
-  }
-
-  .pa-form-field input:focus,
-  .pa-form-field textarea:focus,
-  .pa-form-field select:focus {
-    border-color: #e2b86a;
-  }
-
-  .pa-form-field input[type=file] {
-    padding: 12px;
-  }
-
-  #paPhotoPreview {
-    display: none;
-    max-width: 100%;
-    max-height: 230px;
-    width: auto;
-    object-fit: contain;
-    margin-top: 10px;
-    border: 1px solid #7c5524;
-  }
-
-  .pa-commande-note {
-    padding: 20px;
-    margin: 24px 0;
-    border: 1px solid rgba(198,148,67,.3);
-    background: rgba(198,148,67,.05);
-    color: #c9bdab;
-    font-size: 13px;
-    line-height: 1.85;
-  }
-
-  .pa-commande-submit {
-    width: 100%;
-    min-height: 55px;
-    padding: 14px;
-    border: 1px solid #c69443;
-    background: #c69443;
-    color: #080604;
-    font-family: "Cormorant Garamond", serif;
-    font-size: 20px;
-    letter-spacing: 2px;
-    cursor: pointer;
-  }
-
-  .pa-commande-submit:disabled {
-    opacity: .55;
-    cursor: wait;
-  }
-
-  .pa-commande-status {
-    margin-top: 16px;
-    text-align: center;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .pa-commande-consent {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 20px;
-    font-size: 12px;
-    line-height: 1.7;
-  }
-
-  .pa-commande-consent input {
-    margin-top: 4px;
-    accent-color: #c69443;
-  }
-
-  @media(max-width:620px) {
-    .pa-commande-panel {
-      padding: 55px 20px 25px;
-    }
-
-    .pa-form-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .pa-form-field.pa-full {
-      grid-column: auto;
-    }
-  }
-</style>
-
-<!-- FENETRE FORMULAIRE -->
-
-<div
-  id="paCommandeModal"
-  role="dialog"
-  aria-modal="true"
-  aria-labelledby="paCommandeTitre"
->
-  <div class="pa-commande-panel">
-
-    <button
-      type="button"
-      class="pa-commande-close"
-      id="paCommandeFermer"
-      aria-label="Fermer le formulaire"
-    >×</button>
-
-    <div class="pa-commande-heading">
-      <small>Peter Ants · Création artistique</small>
-
-      <h2 id="paCommandeTitre">
-        Imaginez votre œuvre sur mesure
-      </h2>
-
-      <p>
-        Chaque œuvre Peter Ants est une création unique,
-        imaginée autour de votre histoire et de votre univers.
-        Partagez vos premières idées pour permettre à
-        l'artiste de trouver une première inspiration.
-      </p>
-    </div>
-
-    <form id="paCommandeForm">
-
-      <div class="pa-form-grid">
-
-        <div class="pa-form-field">
+<!-- FORMULAIRE SUR MESURE -->
+<div id="commandeModal" role="dialog"
+     aria-modal="true" aria-labelledby="commandeTitre">
+  <div class="commande-panel">
+    <button class="commande-close" id="fermerCommande"
+            type="button" aria-label="Fermer">×</button>
+
+    <small class="eyebrow">PETER ANTS · CRÉATION UNIQUE</small>
+
+    <h2 id="commandeTitre">
+      Imaginez votre œuvre sur mesure
+    </h2>
+
+    <p>
+      Chaque œuvre Peter Ants est une création unique.
+      Partagez votre univers, votre histoire et vos envies
+      pour permettre à l'artiste de trouver une première
+      inspiration.
+    </p>
+
+    <form id="commandeForm">
+      <div class="form-grid">
+
+        <div class="field">
           <label for="paNom">Nom *</label>
           <input id="paNom" name="nom"
-                 autocomplete="family-name"
-                 maxlength="100" required>
+                 maxlength="100" required
+                 autocomplete="family-name">
         </div>
 
-        <div class="pa-form-field">
+        <div class="field">
           <label for="paPrenom">Prénom *</label>
           <input id="paPrenom" name="prenom"
-                 autocomplete="given-name"
-                 maxlength="100" required>
+                 maxlength="100" required
+                 autocomplete="given-name">
         </div>
 
-        <div class="pa-form-field">
-          <label for="paEmail">Adresse e-mail *</label>
+        <div class="field">
+          <label for="paEmail">E-mail *</label>
           <input id="paEmail" name="email"
-                 type="email"
-                 autocomplete="email"
-                 maxlength="200" required>
+                 type="email" maxlength="200"
+                 required autocomplete="email">
         </div>
 
-        <div class="pa-form-field">
+        <div class="field">
           <label for="paTelephone">Téléphone *</label>
           <input id="paTelephone" name="telephone"
-                 type="tel"
-                 autocomplete="tel"
-                 maxlength="40" required>
+                 type="tel" maxlength="40"
+                 required autocomplete="tel">
         </div>
 
-        <div class="pa-form-field pa-full">
+        <div class="field full">
           <label for="paTheme">Thème de l'œuvre *</label>
           <select id="paTheme" name="theme" required>
-            <option value="">Choisissez un thème</option>
+            <option value="">Choisir un thème</option>
             <option>Profession / Métier</option>
             <option>Passion / Sport</option>
             <option>Famille / Naissance</option>
@@ -2639,77 +804,63 @@ if (document.readyState === "loading") {
           </select>
         </div>
 
-        <div class="pa-form-field pa-full">
+        <div class="field full">
           <label for="paMessage">
             Message ou symbolique de l'œuvre *
           </label>
-          <textarea
-            id="paMessage"
-            name="message"
-            maxlength="3000"
-            placeholder="Quelle histoire souhaitez-vous raconter ? Quel message doit transmettre votre création ?"
-            required
-          ></textarea>
+          <textarea id="paMessage" name="message"
+            maxlength="3000" required
+            placeholder="Quelle histoire ou quel message souhaitez-vous transmettre ?"></textarea>
         </div>
 
-        <div class="pa-form-field pa-full">
+        <div class="field full">
           <label for="paDetails">
-            Détails particuliers de votre création
+            Détails particuliers
           </label>
-          <textarea
-            id="paDetails"
-            name="details"
+          <textarea id="paDetails" name="details"
             maxlength="5000"
-            placeholder="Décor, objets, personnages, couleurs, ambiance, position des fourmis, détails importants..."
-          ></textarea>
+            placeholder="Décor, objets, personnages, couleurs, ambiance, position des fourmis..."></textarea>
         </div>
 
-        <div class="pa-form-field pa-full">
+        <div class="field full">
           <label for="paDimensions">
             Dimensions souhaitées
           </label>
-          <input
-            id="paDimensions"
-            name="dimensions"
-            maxlength="300"
-            placeholder="Ex. : 30 × 20 × 20 cm, ou à définir avec l'artiste"
-          >
+          <input id="paDimensions" name="dimensions"
+                 maxlength="300"
+                 placeholder="Ex. : 30 × 20 × 20 cm, ou à définir">
         </div>
 
-        <div class="pa-form-field pa-full">
+        <div class="field full">
           <label for="paPhoto">
             Photo d'inspiration (facultatif)
           </label>
-          <input
-            id="paPhoto"
-            name="photo"
-            type="file"
-            accept="image/jpeg,image/png,image/webp"
-          >
-          <small>JPG, PNG ou WebP · 5 Mo maximum</small>
-          <img id="paPhotoPreview" alt="Aperçu de la photo">
+          <input id="paPhoto" name="photo"
+                 type="file"
+                 accept="image/jpeg,image/png,image/webp">
+          <small>JPG, PNG ou WebP — 5 Mo maximum.</small>
+          <img id="photoPreview" alt="Aperçu de la photo">
         </div>
-
       </div>
 
-      <div class="pa-commande-note">
+      <div class="form-note">
         <strong style="color:#e2b86a">
           Et après votre demande ?
         </strong>
         <p>
-          Peter Ants vous contactera personnellement
-          pour discuter de votre projet, approfondir
-          vos idées et définir ensemble les modalités
-          de réalisation, le tarif et les délais.
+          Peter Ants vous contactera personnellement pour
+          discuter de votre projet, approfondir vos idées
+          et définir les modalités de réalisation, les
+          dimensions, le tarif et les délais.
         </p>
         <p>
-          Ces informations permettront à l'artiste
-          d'avoir une première inspiration.
-          Cette demande est sans engagement.
+          Ces informations permettront à l'artiste d'avoir
+          une première inspiration. Cette demande est
+          sans engagement.
         </p>
       </div>
 
-      <label class="pa-commande-consent">
+      <label class="consent">
         <input type="checkbox" id="paConsentement" required>
         <span>
           J'accepte que mes informations et ma photo
@@ -2718,221 +869,537 @@ if (document.readyState === "loading") {
         </span>
       </label>
 
-      <button
-        type="submit"
-        id="paCommandeEnvoyer"
-        class="pa-commande-submit"
-      >
+      <button class="submit" id="envoyerCommande"
+              type="submit">
         ENVOYER MON PROJET
       </button>
 
-      <div
-        id="paCommandeStatus"
-        class="pa-commande-status"
-        role="status"
-        aria-live="polite"
-      ></div>
-
+      <div id="commandeStatus" role="status"
+           aria-live="polite"></div>
     </form>
   </div>
 </div>
 
-<!-- =========================================================
-     JAVASCRIPT FORMULAIRE
-========================================================= -->
-
 <script>
-(function() {
-  "use strict";
+"use strict";
 
-  const PA_COMMANDES_API =
-    "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
+/* ================= CONFIGURATION ================= */
 
-  const modal = document.getElementById("paCommandeModal");
-  const form = document.getElementById("paCommandeForm");
-  const closeButton = document.getElementById("paCommandeFermer");
-  const sendButton = document.getElementById("paCommandeEnvoyer");
-  const status = document.getElementById("paCommandeStatus");
-  const photoInput = document.getElementById("paPhoto");
-  const photoPreview = document.getElementById("paPhotoPreview");
+const PA_API_URL =
+  "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
 
-  let sending = false;
-  let previewUrl = "";
+const PA = {
+  creations: [],
+  byId: {},
+  loaded: false
+};
 
-  function ouvrirCommande() {
-    modal.classList.add("pa-open");
-    document.body.style.overflow = "hidden";
-    document.getElementById("paNom").focus();
+const $ = id => document.getElementById(id);
+
+function paImageUrl(value) {
+  const url = String(value || "").trim();
+  if (!url) return "";
+
+  const match = url.match(
+    /drive\.google\.com\/file\/d\/([A-Za-z0-9_-]+)/
+  );
+
+  if (match) {
+    return "https://drive.google.com/thumbnail?id=" +
+      encodeURIComponent(match[1]) + "&sz=w1600";
   }
 
-  function fermerCommande() {
-    if (sending) return;
-    modal.classList.remove("pa-open");
-    document.body.style.overflow = "";
+  return url;
+}
+
+function paVideoUrl(value) {
+  const url = String(value || "").trim();
+  if (!url) return "";
+
+  const match = url.match(
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtube-nocookie\.com\/embed\/|youtu\.be\/)([A-Za-z0-9_-]{11})/
+  );
+
+  if (!match) return "";
+
+  return "https://www.youtube-nocookie.com/embed/" +
+    match[1];
+}
+
+function paText(id, value) {
+  if (value == null || value === "") return;
+  const el = $(id);
+  if (el) el.textContent = String(value);
+}
+
+function paImage(id, value) {
+  if (!value) return;
+  const el = $(id);
+  if (el) el.src = paImageUrl(value);
+}
+
+function paConfig(config, key) {
+  const entry = config && config[key];
+  return entry ? entry.texte || "" : "";
+}
+
+function paConfigImage(config, key) {
+  const entry = config && config[key];
+  return entry ? entry.image || "" : "";
+}
+
+/* ================= JSONP ================= */
+
+function paChargerDonnees() {
+  const callbackName =
+    "PA_JSONP_" + Date.now() + "_" +
+    Math.floor(Math.random() * 100000);
+
+  const script = document.createElement("script");
+  let completed = false;
+
+  const timeout = setTimeout(() => {
+    finish(new Error("Délai de chargement dépassé."));
+  }, 20000);
+
+  function finish(error) {
+    if (completed) return;
+    completed = true;
+
+    clearTimeout(timeout);
+    script.remove();
+    delete window[callbackName];
+
+    if (error) {
+      console.error("Peter Ants :", error);
+      $("paGallery").textContent =
+        "Impossible de charger les créations. Veuillez réessayer ultérieurement.";
+    }
   }
 
-  /* Remplace l'action du bouton sur mesure existant */
-  document.querySelectorAll(
-    'a[href="#contact"]'
-  ).forEach(function(link) {
-
-    if (
-      link.closest("#sur-mesure") ||
-      /commander sur mesure/i.test(link.textContent)
-    ) {
-      link.addEventListener("click", function(e) {
-        e.preventDefault();
-        ouvrirCommande();
-      });
-    }
-  });
-
-  closeButton.addEventListener("click", fermerCommande);
-
-  modal.addEventListener("click", function(e) {
-    if (e.target === modal) fermerCommande();
-  });
-
-  document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape" &&
-        modal.classList.contains("pa-open")) {
-      fermerCommande();
-    }
-  });
-
-  /* Aperçu de l'image */
-  photoInput.addEventListener("change", function() {
-    if (previewUrl) {
-      URL.revokeObjectURL(previewUrl);
-      previewUrl = "";
-    }
-
-    const file = photoInput.files[0];
-
-    if (!file) {
-      photoPreview.style.display = "none";
+  window[callbackName] = function(data) {
+    if (!data || data.success !== true) {
+      finish(new Error("Réponse API invalide."));
       return;
     }
-
-    if (
-      !["image/jpeg", "image/png", "image/webp"]
-        .includes(file.type) ||
-      file.size > 5 * 1024 * 1024
-    ) {
-      photoInput.value = "";
-      photoPreview.style.display = "none";
-      status.textContent =
-        "Choisissez une image JPG, PNG ou WebP de 5 Mo maximum.";
-      status.style.color = "#ffb0a0";
-      return;
-    }
-
-    previewUrl = URL.createObjectURL(file);
-    photoPreview.src = previewUrl;
-    photoPreview.style.display = "block";
-    status.textContent = "";
-  });
-
-  function lirePhoto(file) {
-    return new Promise(function(resolve, reject) {
-      if (!file) {
-        resolve({ photoBase64: "", photoMime: "" });
-        return;
-      }
-
-      const reader = new FileReader();
-
-      reader.onload = function() {
-        const result = String(reader.result || "");
-        resolve({
-          photoBase64: result.split(",")[1] || "",
-          photoMime: file.type
-        });
-      };
-
-      reader.onerror = function() {
-        reject(new Error("Impossible de lire la photo."));
-      };
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  /* Envoi vers Apps Script */
-  form.addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    if (sending || !form.reportValidity()) return;
-
-    sending = true;
-    sendButton.disabled = true;
-    sendButton.textContent = "ENVOI EN COURS...";
-    status.style.color = "#dab471";
-    status.textContent = "Transmission de votre demande...";
 
     try {
-      const file = photoInput.files[0] || null;
-      const photo = await lirePhoto(file);
+      PA.creations = Array.isArray(data.creations)
+        ? data.creations : [];
 
-      const payload = {
-        nom: document.getElementById("paNom").value.trim(),
-        prenom: document.getElementById("paPrenom").value.trim(),
-        email: document.getElementById("paEmail").value.trim(),
-        telephone: document.getElementById("paTelephone").value.trim(),
-        theme: document.getElementById("paTheme").value,
-        message: document.getElementById("paMessage").value.trim(),
-        details: document.getElementById("paDetails").value.trim(),
-        dimensions: document.getElementById("paDimensions").value.trim(),
-        photoBase64: photo.photoBase64,
-        photoMime: photo.photoMime
-      };
+      PA.byId = {};
 
-      /*
-        Apps Script et GitHub Pages sont sur des domaines
-        différents. text/plain évite une requête preflight
-        pour ce POST simple, mais la réponse peut rester
-        inaccessible à cause de CORS.
-      */
-      await fetch(PA_COMMANDES_API, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload)
+      PA.creations.forEach(item => {
+        PA.byId[item.id] = item;
       });
 
-      /*
-        Avec no-cors, le navigateur ne peut pas vérifier
-        que Google Sheets a réellement enregistré la demande.
-        On affiche donc un état non confirmé.
-      */
-      status.style.color = "#e2b86a";
-      status.textContent =
-        "Votre demande a été transmise, mais sa réception " +
-        "n'a pas pu être confirmée automatiquement. " +
-        "Si vous ne recevez pas de retour, contactez " +
-        "Peter Ants à Lionel.cassis@free.fr.";
+      paAfficherCreations();
+      paAppliquerConfiguration(data);
+      PA.loaded = true;
 
-      // Conserver le formulaire pour éviter de perdre
-      // les informations si la transmission a échoué.
-
+      finish();
     } catch (error) {
-      console.error("Erreur Peter Ants :", error);
-      status.style.color = "#ffb0a0";
-      status.textContent =
-        "L'envoi a échoué. Veuillez réessayer.";
-    } finally {
-      sending = false;
-      sendButton.disabled = false;
-      sendButton.textContent = "ENVOYER MON PROJET";
+      finish(error);
     }
+  };
+
+  script.onerror = function() {
+    finish(new Error("Script JSONP inaccessible."));
+  };
+
+  script.src = PA_API_URL +
+    "?callback=" + encodeURIComponent(callbackName) +
+    "&t=" + Date.now();
+
+  document.head.appendChild(script);
+}
+
+/* ================= GALERIE ================= */
+
+function paAfficherCreations() {
+  const gallery = $("paGallery");
+  gallery.replaceChildren();
+
+  if (!PA.creations.length) {
+    gallery.textContent =
+      "Aucune création active actuellement.";
+    return;
+  }
+
+  PA.creations.forEach((item, index) => {
+    const card = document.createElement("article");
+    card.className = "art-card";
+    card.tabIndex = 0;
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label",
+      "Découvrir " + (item.title || "l'œuvre"));
+
+    const imageBox = document.createElement("div");
+    imageBox.className = "art-image";
+
+    const img = document.createElement("img");
+    img.src = paImageUrl(item.image) || "naissance.jpg";
+    img.alt = item.title || "Œuvre Peter Ants";
+    img.loading = index < 4 ? "eager" : "lazy";
+
+    const number = document.createElement("span");
+    number.className = "art-number";
+    number.textContent =
+      item.number || "ŒUVRE " +
+      String(index + 1).padStart(2, "0");
+
+    imageBox.append(img, number);
+
+    const info = document.createElement("div");
+    info.className = "art-info";
+
+    const title = document.createElement("h3");
+    title.textContent = item.title || "";
+
+    const subtitle = document.createElement("div");
+    subtitle.className = "art-subtitle";
+    subtitle.textContent = item.subtitle || "";
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = item.price || "";
+
+    const discover = document.createElement("div");
+    discover.className = "discover";
+    discover.textContent = "Découvrir l'œuvre";
+
+    info.append(title, subtitle, price, discover);
+    card.append(imageBox, info);
+
+    card.addEventListener("click", () => {
+      paOuvrirOeuvre(item.id);
+    });
+
+    card.addEventListener("keydown", event => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        paOuvrirOeuvre(item.id);
+      }
+    });
+
+    gallery.appendChild(card);
   });
-})();
+}
+
+/* ================= CONFIGURATION SHEETS ================= */
+
+function paAppliquerConfiguration(data) {
+  const accueil = data.accueil || {};
+  const apropos = data.apropos || {};
+  const parametres = data.parametres || {};
+
+  paText("heroLabel", paConfig(accueil, "HERO_LABEL"));
+  paText("heroTitre", paConfig(accueil, "HERO_TITRE"));
+  paText("heroSousTitre",
+    paConfig(accueil, "HERO_SOUS_TITRE"));
+  paText("heroDescription",
+    paConfig(accueil, "HERO_DESCRIPTION"));
+  paImage("heroImage",
+    paConfigImage(accueil, "HERO_IMAGE"));
+
+  paText("collectionTitre",
+    paConfig(accueil, "COLLECTION_TITRE"));
+  paText("collectionDescription",
+    paConfig(accueil, "COLLECTION_DESCRIPTION"));
+
+  paText("aproposTitre", paConfig(apropos, "TITRE"));
+  paText("aproposP1", paConfig(apropos, "PARAGRAPHE_1"));
+  paText("aproposP2", paConfig(apropos, "PARAGRAPHE_2"));
+  paText("aproposP3", paConfig(apropos, "PARAGRAPHE_3"));
+  paImage("aproposImage",
+    paConfigImage(apropos, "IMAGE"));
+
+  paText("surMesureTitre",
+    paConfig(apropos, "SUR_MESURE_TITRE"));
+  paText("surMesureDescription",
+    paConfig(apropos, "SUR_MESURE_DESCRIPTION"));
+
+  const customImage =
+    paConfigImage(apropos, "SUR_MESURE_IMAGE");
+
+  if (customImage) {
+    $("customBox").style.backgroundImage =
+      "linear-gradient(90deg,#050505 15%,#050505b8 65%,#05050555),url(" +
+      JSON.stringify(paImageUrl(customImage)) + ")";
+  }
+
+  paText("contactTitre",
+    paConfig(parametres, "CONTACT_TITRE"));
+  paText("contactDescription",
+    paConfig(parametres, "CONTACT_DESCRIPTION"));
+  paText("footerDescription",
+    paConfig(parametres, "FOOTER_DESCRIPTION"));
+
+  const email = paConfig(parametres, "EMAIL_CONTACT");
+  if (email) {
+    $("contactEmail").href = "mailto:" + email;
+  }
+
+  const socials = $("socialLinks");
+  socials.replaceChildren();
+
+  [
+    ["INSTAGRAM", "Instagram"],
+    ["FACEBOOK", "Facebook"],
+    ["GOOGLE", "Google"]
+  ].forEach(([key, label]) => {
+    const url = paConfig(parametres, key);
+
+    if (!/^https:\/\//i.test(url)) return;
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = label;
+    socials.appendChild(link);
+  });
+}
+
+/* ================= FICHE OEUVRE ================= */
+
+function paOuvrirOeuvre(id) {
+  const item = PA.byId[id];
+  if (!item) return;
+
+  paText("modalNumber", item.number);
+  paText("modalTitle", item.title);
+  paText("modalSubtitle", item.subtitle);
+  paText("modalPrice", item.price);
+  paText("modalStory", item.story);
+  paText("modalParallel", item.parallel);
+  paText("modalMessage", item.message);
+
+  const img = $("modalImage");
+  const video = $("modalVideo");
+  const videoUrl = paVideoUrl(item.video);
+
+  if (videoUrl) {
+    img.style.display = "none";
+    video.style.display = "block";
+    video.src = videoUrl;
+  } else {
+    video.src = "";
+    video.style.display = "none";
+    img.style.display = "block";
+    img.src = paImageUrl(item.image);
+    img.alt = item.title || "";
+  }
+
+  $("antModal").classList.add("active");
+  document.body.classList.add("locked");
+  $("fermerOeuvre").focus();
+}
+
+function paFermerOeuvre() {
+  $("antModal").classList.remove("active");
+  $("modalVideo").src = "";
+  document.body.classList.remove("locked");
+}
+
+$("fermerOeuvre").addEventListener("click", paFermerOeuvre);
+
+$("antModal").addEventListener("click", event => {
+  if (event.target === $("antModal")) {
+    paFermerOeuvre();
+  }
+});
+
+/* ================= FORMULAIRE ================= */
+
+let paSending = false;
+let paPreviewUrl = "";
+
+function paOuvrirCommande() {
+  $("commandeModal").classList.add("active");
+  document.body.classList.add("locked");
+  $("paNom").focus();
+}
+
+function paFermerCommande() {
+  if (paSending) return;
+  $("commandeModal").classList.remove("active");
+  document.body.classList.remove("locked");
+}
+
+$("ouvrirCommande").addEventListener(
+  "click", paOuvrirCommande
+);
+
+$("fermerCommande").addEventListener(
+  "click", paFermerCommande
+);
+
+$("commandeModal").addEventListener("click", event => {
+  if (event.target === $("commandeModal")) {
+    paFermerCommande();
+  }
+});
+
+$("paPhoto").addEventListener("change", event => {
+  const file = event.target.files[0];
+  const preview = $("photoPreview");
+
+  if (paPreviewUrl) {
+    URL.revokeObjectURL(paPreviewUrl);
+    paPreviewUrl = "";
+  }
+
+  preview.style.display = "none";
+
+  if (!file) return;
+
+  if (![
+    "image/jpeg", "image/png", "image/webp"
+  ].includes(file.type) || file.size > 5 * 1024 * 1024) {
+    event.target.value = "";
+    $("commandeStatus").textContent =
+      "Photo invalide. JPG, PNG ou WebP, 5 Mo maximum.";
+    return;
+  }
+
+  paPreviewUrl = URL.createObjectURL(file);
+  preview.src = paPreviewUrl;
+  preview.style.display = "block";
+});
+
+function paLirePhoto(file) {
+  return new Promise((resolve, reject) => {
+    if (!file) {
+      resolve({ photoBase64: "", photoMime: "" });
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      resolve({
+        photoBase64:
+          String(reader.result).split(",")[1] || "",
+        photoMime: file.type
+      });
+    };
+
+    reader.onerror = () => {
+      reject(new Error("Impossible de lire la photo."));
+    };
+
+    reader.readAsDataURL(file);
+  });
+}
+
+$("commandeForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const form = $("commandeForm");
+  if (paSending || !form.reportValidity()) return;
+
+  paSending = true;
+
+  const button = $("envoyerCommande");
+  const status = $("commandeStatus");
+
+  button.disabled = true;
+  button.textContent = "ENVOI EN COURS...";
+  status.style.color = "#e2b86a";
+  status.textContent = "Transmission de votre projet...";
+
+  try {
+    const photo = await paLirePhoto(
+      $("paPhoto").files[0] || null
+    );
+
+    const payload = {
+      nom: $("paNom").value.trim(),
+      prenom: $("paPrenom").value.trim(),
+      email: $("paEmail").value.trim(),
+      telephone: $("paTelephone").value.trim(),
+      theme: $("paTheme").value,
+      message: $("paMessage").value.trim(),
+      details: $("paDetails").value.trim(),
+      dimensions: $("paDimensions").value.trim(),
+      photoBase64: photo.photoBase64,
+      photoMime: photo.photoMime
+    };
+
+    /*
+      POST simple vers Apps Script.
+      no-cors ne permet pas de lire la réponse serveur.
+    */
+    await fetch(PA_API_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=UTF-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    status.textContent =
+      "Votre projet a été transmis au service Peter Ants. " +
+      "La confirmation de son enregistrement n'est pas " +
+      "disponible automatiquement. " +
+      "Pour toute question : Lionel.cassis@free.fr.";
+
+  } catch (error) {
+    console.error(error);
+    status.style.color = "#ffb0a0";
+    status.textContent =
+      "La transmission a échoué. Veuillez réessayer.";
+  } finally {
+    paSending = false;
+    button.disabled = false;
+    button.textContent = "ENVOYER MON PROJET";
+  }
+});
+
+/* ================= NAVIGATION ================= */
+
+$("menuToggle").addEventListener("click", () => {
+  const nav = $("navigation");
+  const active = nav.classList.toggle("active");
+  $("menuToggle").setAttribute(
+    "aria-expanded", String(active)
+  );
+});
+
+document.querySelectorAll("#navigation a")
+  .forEach(link => {
+    link.addEventListener("click", () => {
+      $("navigation").classList.remove("active");
+      $("menuToggle").setAttribute(
+        "aria-expanded", "false"
+      );
+    });
+  });
+
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape") return;
+
+  if ($("commandeModal").classList.contains("active")) {
+    paFermerCommande();
+  } else if ($("antModal").classList.contains("active")) {
+    paFermerOeuvre();
+  }
+});
+
+$("year").textContent = new Date().getFullYear();
+
+/* ================= DEMARRAGE ================= */
+
+if (document.readyState === "loading") {
+  document.addEventListener(
+    "DOMContentLoaded", paChargerDonnees
+  );
+} else {
+  paChargerDonnees();
+}
 </script>
-
-<!-- FIN FORMULAIRE PETER ANTS -->
-
 
 </body>
 </html>
