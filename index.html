@@ -2357,6 +2357,582 @@ if (document.readyState === "loading") {
     
 </script>
 
+<!-- =========================================================
+     PETER ANTS - FORMULAIRE COMMANDE SUR MESURE
+     VERSION GITHUB PAGES
+     A COLLER JUSTE AVANT </body>
+========================================================= -->
+
+<style>
+  #paCommandeModal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .92);
+    backdrop-filter: blur(12px);
+  }
+
+  #paCommandeModal.pa-open {
+    display: flex;
+  }
+
+  .pa-commande-panel {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: 94dvh;
+    overflow-y: auto;
+    padding: 42px;
+    background: linear-gradient(145deg, #15120d, #050505);
+    border: 1px solid #9d7135;
+    box-shadow: 0 25px 90px rgba(0,0,0,.8);
+    color: #c9bdab;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  .pa-commande-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #7c5524;
+    background: transparent;
+    color: #e2b86a;
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  .pa-commande-heading {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .pa-commande-heading small {
+    color: #c69443;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .pa-commande-heading h2 {
+    margin: 15px 0;
+    color: #e2b86a;
+    font-family: "Cormorant Garamond", serif;
+    font-size: clamp(35px, 6vw, 51px);
+    font-weight: 400;
+  }
+
+  .pa-commande-heading p {
+    line-height: 1.9;
+    font-size: 13px;
+    color: #b9aa95;
+  }
+
+  .pa-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+
+  .pa-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    min-width: 0;
+  }
+
+  .pa-form-field.pa-full {
+    grid-column: 1 / -1;
+  }
+
+  .pa-form-field label {
+    color: #dab471;
+    font-size: 12px;
+    letter-spacing: 1px;
+  }
+
+  .pa-form-field input,
+  .pa-form-field select,
+  .pa-form-field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 13px;
+    border: 1px solid rgba(198,148,67,.45);
+    border-radius: 0;
+    outline: none;
+    background: #0b0a08;
+    color: #e7dcc8;
+    font-family: inherit;
+    font-size: 14px;
+  }
+
+  .pa-form-field textarea {
+    resize: vertical;
+    min-height: 110px;
+  }
+
+  .pa-form-field input:focus,
+  .pa-form-field textarea:focus,
+  .pa-form-field select:focus {
+    border-color: #e2b86a;
+  }
+
+  .pa-form-field input[type=file] {
+    padding: 12px;
+  }
+
+  #paPhotoPreview {
+    display: none;
+    max-width: 100%;
+    max-height: 230px;
+    width: auto;
+    object-fit: contain;
+    margin-top: 10px;
+    border: 1px solid #7c5524;
+  }
+
+  .pa-commande-note {
+    padding: 20px;
+    margin: 24px 0;
+    border: 1px solid rgba(198,148,67,.3);
+    background: rgba(198,148,67,.05);
+    color: #c9bdab;
+    font-size: 13px;
+    line-height: 1.85;
+  }
+
+  .pa-commande-submit {
+    width: 100%;
+    min-height: 55px;
+    padding: 14px;
+    border: 1px solid #c69443;
+    background: #c69443;
+    color: #080604;
+    font-family: "Cormorant Garamond", serif;
+    font-size: 20px;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  .pa-commande-submit:disabled {
+    opacity: .55;
+    cursor: wait;
+  }
+
+  .pa-commande-status {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .pa-commande-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    line-height: 1.7;
+  }
+
+  .pa-commande-consent input {
+    margin-top: 4px;
+    accent-color: #c69443;
+  }
+
+  @media(max-width:620px) {
+    .pa-commande-panel {
+      padding: 55px 20px 25px;
+    }
+
+    .pa-form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pa-form-field.pa-full {
+      grid-column: auto;
+    }
+  }
+</style>
+
+<!-- FENETRE FORMULAIRE -->
+
+<div
+  id="paCommandeModal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="paCommandeTitre"
+>
+  <div class="pa-commande-panel">
+
+    <button
+      type="button"
+      class="pa-commande-close"
+      id="paCommandeFermer"
+      aria-label="Fermer le formulaire"
+    >×</button>
+
+    <div class="pa-commande-heading">
+      <small>Peter Ants · Création artistique</small>
+
+      <h2 id="paCommandeTitre">
+        Imaginez votre œuvre sur mesure
+      </h2>
+
+      <p>
+        Chaque œuvre Peter Ants est une création unique,
+        imaginée autour de votre histoire et de votre univers.
+        Partagez vos premières idées pour permettre à
+        l'artiste de trouver une première inspiration.
+      </p>
+    </div>
+
+    <form id="paCommandeForm">
+
+      <div class="pa-form-grid">
+
+        <div class="pa-form-field">
+          <label for="paNom">Nom *</label>
+          <input id="paNom" name="nom"
+                 autocomplete="family-name"
+                 maxlength="100" required>
+        </div>
+
+        <div class="pa-form-field">
+          <label for="paPrenom">Prénom *</label>
+          <input id="paPrenom" name="prenom"
+                 autocomplete="given-name"
+                 maxlength="100" required>
+        </div>
+
+        <div class="pa-form-field">
+          <label for="paEmail">Adresse e-mail *</label>
+          <input id="paEmail" name="email"
+                 type="email"
+                 autocomplete="email"
+                 maxlength="200" required>
+        </div>
+
+        <div class="pa-form-field">
+          <label for="paTelephone">Téléphone *</label>
+          <input id="paTelephone" name="telephone"
+                 type="tel"
+                 autocomplete="tel"
+                 maxlength="40" required>
+        </div>
+
+        <div class="pa-form-field pa-full">
+          <label for="paTheme">Thème de l'œuvre *</label>
+          <select id="paTheme" name="theme" required>
+            <option value="">Choisissez un thème</option>
+            <option>Profession / Métier</option>
+            <option>Passion / Sport</option>
+            <option>Famille / Naissance</option>
+            <option>Amour / Amitié</option>
+            <option>Souvenir / Événement</option>
+            <option>Humour / Scène de vie</option>
+            <option>Entreprise / Cadeau professionnel</option>
+            <option>Autre création personnalisée</option>
+          </select>
+        </div>
+
+        <div class="pa-form-field pa-full">
+          <label for="paMessage">
+            Message ou symbolique de l'œuvre *
+          </label>
+          <textarea
+            id="paMessage"
+            name="message"
+            maxlength="3000"
+            placeholder="Quelle histoire souhaitez-vous raconter ? Quel message doit transmettre votre création ?"
+            required
+          ></textarea>
+        </div>
+
+        <div class="pa-form-field pa-full">
+          <label for="paDetails">
+            Détails particuliers de votre création
+          </label>
+          <textarea
+            id="paDetails"
+            name="details"
+            maxlength="5000"
+            placeholder="Décor, objets, personnages, couleurs, ambiance, position des fourmis, détails importants..."
+          ></textarea>
+        </div>
+
+        <div class="pa-form-field pa-full">
+          <label for="paDimensions">
+            Dimensions souhaitées
+          </label>
+          <input
+            id="paDimensions"
+            name="dimensions"
+            maxlength="300"
+            placeholder="Ex. : 30 × 20 × 20 cm, ou à définir avec l'artiste"
+          >
+        </div>
+
+        <div class="pa-form-field pa-full">
+          <label for="paPhoto">
+            Photo d'inspiration (facultatif)
+          </label>
+          <input
+            id="paPhoto"
+            name="photo"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+          >
+          <small>JPG, PNG ou WebP · 5 Mo maximum</small>
+          <img id="paPhotoPreview" alt="Aperçu de la photo">
+        </div>
+
+      </div>
+
+      <div class="pa-commande-note">
+        <strong style="color:#e2b86a">
+          Et après votre demande ?
+        </strong>
+        <p>
+          Peter Ants vous contactera personnellement
+          pour discuter de votre projet, approfondir
+          vos idées et définir ensemble les modalités
+          de réalisation, le tarif et les délais.
+        </p>
+        <p>
+          Ces informations permettront à l'artiste
+          d'avoir une première inspiration.
+          Cette demande est sans engagement.
+        </p>
+      </div>
+
+      <label class="pa-commande-consent">
+        <input type="checkbox" id="paConsentement" required>
+        <span>
+          J'accepte que mes informations et ma photo
+          éventuelle soient utilisées par Peter Ants
+          pour étudier ma demande et me recontacter.
+        </span>
+      </label>
+
+      <button
+        type="submit"
+        id="paCommandeEnvoyer"
+        class="pa-commande-submit"
+      >
+        ENVOYER MON PROJET
+      </button>
+
+      <div
+        id="paCommandeStatus"
+        class="pa-commande-status"
+        role="status"
+        aria-live="polite"
+      ></div>
+
+    </form>
+  </div>
+</div>
+
+<!-- =========================================================
+     JAVASCRIPT FORMULAIRE
+========================================================= -->
+
+<script>
+(function() {
+  "use strict";
+
+  const PA_COMMANDES_API =
+    "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
+
+  const modal = document.getElementById("paCommandeModal");
+  const form = document.getElementById("paCommandeForm");
+  const closeButton = document.getElementById("paCommandeFermer");
+  const sendButton = document.getElementById("paCommandeEnvoyer");
+  const status = document.getElementById("paCommandeStatus");
+  const photoInput = document.getElementById("paPhoto");
+  const photoPreview = document.getElementById("paPhotoPreview");
+
+  let sending = false;
+  let previewUrl = "";
+
+  function ouvrirCommande() {
+    modal.classList.add("pa-open");
+    document.body.style.overflow = "hidden";
+    document.getElementById("paNom").focus();
+  }
+
+  function fermerCommande() {
+    if (sending) return;
+    modal.classList.remove("pa-open");
+    document.body.style.overflow = "";
+  }
+
+  /* Remplace l'action du bouton sur mesure existant */
+  document.querySelectorAll(
+    'a[href="#contact"]'
+  ).forEach(function(link) {
+
+    if (
+      link.closest("#sur-mesure") ||
+      /commander sur mesure/i.test(link.textContent)
+    ) {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        ouvrirCommande();
+      });
+    }
+  });
+
+  closeButton.addEventListener("click", fermerCommande);
+
+  modal.addEventListener("click", function(e) {
+    if (e.target === modal) fermerCommande();
+  });
+
+  document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape" &&
+        modal.classList.contains("pa-open")) {
+      fermerCommande();
+    }
+  });
+
+  /* Aperçu de l'image */
+  photoInput.addEventListener("change", function() {
+    if (previewUrl) {
+      URL.revokeObjectURL(previewUrl);
+      previewUrl = "";
+    }
+
+    const file = photoInput.files[0];
+
+    if (!file) {
+      photoPreview.style.display = "none";
+      return;
+    }
+
+    if (
+      !["image/jpeg", "image/png", "image/webp"]
+        .includes(file.type) ||
+      file.size > 5 * 1024 * 1024
+    ) {
+      photoInput.value = "";
+      photoPreview.style.display = "none";
+      status.textContent =
+        "Choisissez une image JPG, PNG ou WebP de 5 Mo maximum.";
+      status.style.color = "#ffb0a0";
+      return;
+    }
+
+    previewUrl = URL.createObjectURL(file);
+    photoPreview.src = previewUrl;
+    photoPreview.style.display = "block";
+    status.textContent = "";
+  });
+
+  function lirePhoto(file) {
+    return new Promise(function(resolve, reject) {
+      if (!file) {
+        resolve({ photoBase64: "", photoMime: "" });
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = function() {
+        const result = String(reader.result || "");
+        resolve({
+          photoBase64: result.split(",")[1] || "",
+          photoMime: file.type
+        });
+      };
+
+      reader.onerror = function() {
+        reject(new Error("Impossible de lire la photo."));
+      };
+
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* Envoi vers Apps Script */
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    if (sending || !form.reportValidity()) return;
+
+    sending = true;
+    sendButton.disabled = true;
+    sendButton.textContent = "ENVOI EN COURS...";
+    status.style.color = "#dab471";
+    status.textContent = "Transmission de votre demande...";
+
+    try {
+      const file = photoInput.files[0] || null;
+      const photo = await lirePhoto(file);
+
+      const payload = {
+        nom: document.getElementById("paNom").value.trim(),
+        prenom: document.getElementById("paPrenom").value.trim(),
+        email: document.getElementById("paEmail").value.trim(),
+        telephone: document.getElementById("paTelephone").value.trim(),
+        theme: document.getElementById("paTheme").value,
+        message: document.getElementById("paMessage").value.trim(),
+        details: document.getElementById("paDetails").value.trim(),
+        dimensions: document.getElementById("paDimensions").value.trim(),
+        photoBase64: photo.photoBase64,
+        photoMime: photo.photoMime
+      };
+
+      /*
+        Apps Script et GitHub Pages sont sur des domaines
+        différents. text/plain évite une requête preflight
+        pour ce POST simple, mais la réponse peut rester
+        inaccessible à cause de CORS.
+      */
+      await fetch(PA_COMMANDES_API, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      /*
+        Avec no-cors, le navigateur ne peut pas vérifier
+        que Google Sheets a réellement enregistré la demande.
+        On affiche donc un état non confirmé.
+      */
+      status.style.color = "#e2b86a";
+      status.textContent =
+        "Votre demande a été transmise, mais sa réception " +
+        "n'a pas pu être confirmée automatiquement. " +
+        "Si vous ne recevez pas de retour, contactez " +
+        "Peter Ants à Lionel.cassis@free.fr.";
+
+      // Conserver le formulaire pour éviter de perdre
+      // les informations si la transmission a échoué.
+
+    } catch (error) {
+      console.error("Erreur Peter Ants :", error);
+      status.style.color = "#ffb0a0";
+      status.textContent =
+        "L'envoi a échoué. Veuillez réessayer.";
+    } finally {
+      sending = false;
+      sendButton.disabled = false;
+      sendButton.textContent = "ENVOYER MON PROJET";
+    }
+  });
+})();
+</script>
+
+<!-- FIN FORMULAIRE PETER ANTS -->
+
 
 </body>
 </html>
