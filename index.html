@@ -1857,15 +1857,10 @@
 
 <script>
 
-
 /* =========================================================
-   DONNÉES DES FOURMIS
+   PETER ANTS - CONNEXION GOOGLE SHEETS V3
+   Compatible GitHub Pages / Apps Script JSONP
 ========================================================= */
-
-
-/* =====================================================
-   PETER ANTS - CONNEXION GOOGLE SHEETS
-===================================================== */
 
 const PA_API_URL =
   "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
@@ -1873,9 +1868,9 @@ const PA_API_URL =
 const ants = {};
 
 
-/* =====================================================
-   IMAGES GOOGLE DRIVE
-===================================================== */
+/* =========================================================
+   CONVERSION DES IMAGES GOOGLE DRIVE
+========================================================= */
 
 function paImageUrl(url) {
 
@@ -1896,9 +1891,9 @@ function paImageUrl(url) {
 }
 
 
-/* =====================================================
-   VIDEOS YOUTUBE
-===================================================== */
+/* =========================================================
+   CONVERSION DES VIDEOS YOUTUBE
+========================================================= */
 
 function paVideoUrl(url) {
 
@@ -1909,22 +1904,26 @@ function paVideoUrl(url) {
     const u = new URL(url);
     let id = "";
 
-    if (
-      u.hostname === "youtube.com" ||
-      u.hostname === "www.youtube.com" ||
-      u.hostname === "m.youtube.com"
-    ) {
-      id = u.searchParams.get("v") ||
-        (u.pathname.match(
-          /^\/(?:embed|shorts)\/([\w-]{11})/
-        ) || [])[1] || "";
-    }
+    const host = u.hostname.toLowerCase();
 
     if (
-      u.hostname === "youtu.be" ||
-      u.hostname === "www.youtu.be"
+      host === "youtube.com" ||
+      host === "www.youtube.com" ||
+      host === "m.youtube.com"
     ) {
+
+      id = u.searchParams.get("v") ||
+        (u.pathname.match(
+          /^\/(?:embed|shorts|live)\/([\w-]{11})/
+        ) || [])[1] || "";
+
+    } else if (
+      host === "youtu.be" ||
+      host === "www.youtu.be"
+    ) {
+
       id = u.pathname.split("/")[1];
+
     }
 
     if (!/^[\w-]{11}$/.test(id)) return "";
@@ -1934,56 +1933,71 @@ function paVideoUrl(url) {
       "?autoplay=1&mute=1&playsinline=1&rel=0";
 
   } catch (e) {
+
     return "";
+
   }
 }
 
 
-/* =====================================================
+/* =========================================================
    CREATION AUTOMATIQUE DES CARTES
-===================================================== */
+========================================================= */
 
 function paCreerCarte(ant, index) {
 
   const card = document.createElement("article");
+
   card.className = "art-card";
 
   card.addEventListener("click", function() {
     openAnt(ant.id);
   });
 
+
   const media = document.createElement("div");
   media.className = "art-image";
 
+
   const numero = document.createElement("span");
   numero.className = "number";
+
   numero.textContent =
     String(index + 1).padStart(2, "0");
 
+
   const image = document.createElement("img");
-  image.src = paImageUrl(ant.image);
-  image.alt = ant.title;
+
+  image.src = ant.image || "";
+  image.alt = ant.title || "Création Peter Ants";
   image.loading = "lazy";
 
+
   media.append(numero, image);
+
 
   const info = document.createElement("div");
   info.className = "art-info";
 
+
   const titre = document.createElement("h3");
-  titre.textContent = ant.title;
+  titre.textContent = ant.title || "";
+
 
   const sousTitre = document.createElement("div");
   sousTitre.className = "art-subtitle";
-  sousTitre.textContent = ant.subtitle;
+  sousTitre.textContent = ant.subtitle || "";
+
 
   const prix = document.createElement("div");
   prix.className = "price";
-  prix.textContent = ant.price;
+  prix.textContent = ant.price || "";
+
 
   const lien = document.createElement("span");
   lien.className = "discover";
   lien.textContent = "Découvrir l'œuvre →";
+
 
   info.append(titre, sousTitre, prix, lien);
 
@@ -1993,59 +2007,113 @@ function paCreerCarte(ant, index) {
 }
 
 
-/* =====================================================
-   CHARGEMENT DES DONNEES
-===================================================== */
+/* =========================================================
+   CHARGEMENT JSONP - SANS FETCH / SANS CORS
+========================================================= */
 
-async function paChargerCreations() {
+function paChargerCreations() {
 
-  const galerie = document.getElementById("paGallery");
+  const galerie =
+    document.getElementById("paGallery");
 
   if (!galerie) {
     console.error("Galerie paGallery introuvable.");
     return;
   }
 
-  try {
+  const callbackName =
+    "PA_JSONP_" + Date.now() + "_" +
+    Math.floor(Math.random() * 100000);
 
-    const response = await fetch(
-      PA_API_URL + "?t=" + Date.now(),
-      {
-        cache: "no-store",
-        redirect: "follow"
-      }
+  const script = document.createElement("script");
+
+  let termine = false;
+
+  const timeout = setTimeout(function() {
+
+    terminer(
+      new Error("Délai de chargement dépassé")
     );
 
-    if (!response.ok) {
-      throw new Error("HTTP " + response.status);
-    }
+  }, 15000);
 
-    const data = await response.json();
+
+  function terminer(erreur) {
+
+    if (termine) return;
+
+    termine = true;
+
+    clearTimeout(timeout);
+
+    script.remove();
+
+    delete window[callbackName];
+
+    if (erreur) {
+
+      console.error(
+        "Peter Ants - Erreur API :",
+        erreur
+      );
+
+      galerie.textContent =
+        "Impossible de charger les créations. " +
+        "Veuillez réessayer ultérieurement.";
+
+    }
+  }
+
+
+  window[callbackName] = function(data) {
 
     if (
-      !data.success ||
+      !data ||
+      data.success !== true ||
       !Array.isArray(data.creations)
     ) {
-      throw new Error(
-        data.error || "Réponse API invalide"
+
+      terminer(
+        new Error("Réponse API invalide")
       );
+
+      return;
     }
 
-    Object.keys(ants).forEach(id => {
+
+    Object.keys(ants).forEach(function(id) {
       delete ants[id];
     });
 
-    const fragment = document.createDocumentFragment();
 
-    data.creations.forEach((row, index) => {
+    const fragment =
+      document.createDocumentFragment();
 
-      if (!row.id) return;
+
+    const creations = data.creations
+
+      .filter(function(row) {
+        return row.id && row.title;
+      })
+
+      .sort(function(a, b) {
+        return Number(a.ordre || 0) -
+               Number(b.ordre || 0);
+      });
+
+
+    creations.forEach(function(row, index) {
 
       const ant = {
+
         ...row,
+
         image: paImageUrl(row.image),
+
         video: paVideoUrl(row.video)
+
       };
+
 
       ants[ant.id] = ant;
 
@@ -2055,51 +2123,62 @@ async function paChargerCreations() {
 
     });
 
+
     galerie.replaceChildren(fragment);
 
-    if (!galerie.children.length) {
+
+    if (!creations.length) {
+
       galerie.textContent =
         "Aucune création active actuellement.";
+
     }
+
+
+    terminer();
+
 
     console.log(
       "Peter Ants : " +
-      data.creations.length +
-      " créations chargées."
+      creations.length +
+      " œuvres chargées depuis Google Sheets."
     );
 
-  } catch (error) {
+  };
 
-    console.error(
-      "Erreur synchronisation Peter Ants :",
-      error
+
+  script.onerror = function() {
+
+    terminer(
+      new Error("Chargement du script impossible")
     );
 
-    galerie.textContent =
-      "Impossible de charger les créations. " +
-      "Veuillez réessayer ultérieurement.";
-  }
+  };
+
+
+  script.src =
+    PA_API_URL +
+    "?callback=" +
+    encodeURIComponent(callbackName) +
+    "&t=" + Date.now();
+
+
+  document.head.appendChild(script);
+
 }
 
 
-/* =====================================================
-   CHARGEMENT AUTOMATIQUE
-===================================================== */
-
-document.addEventListener(
-  "DOMContentLoaded",
-  paChargerCreations
-); 
-
-
 /* =========================================================
-   OUVERTURE PROFIL
+   OUVERTURE DU PROFIL D'UNE ŒUVRE
 ========================================================= */
 
 function openAnt(id) {
 
   const ant = ants[id];
-if (!ant) return;
+
+  if (!ant) return;
+
+
   const modalImage =
     document.getElementById("modalImage");
 
@@ -2108,56 +2187,48 @@ if (!ant) return;
 
 
   document.getElementById("modalNumber").textContent =
-    ant.number;
+    ant.number || "";
 
   document.getElementById("modalTitle").textContent =
-    ant.title;
+    ant.title || "";
 
   document.getElementById("modalSubtitle").textContent =
-    ant.subtitle;
+    ant.subtitle || "";
 
   document.getElementById("modalPrice").textContent =
-    ant.price;
+    ant.price || "";
 
   document.getElementById("modalStory").textContent =
-    ant.story;
+    ant.story || "";
 
   document.getElementById("modalParallel").textContent =
-    ant.parallel;
+    ant.parallel || "";
 
   document.getElementById("modalMessage").textContent =
-    ant.message;
+    ant.message || "";
 
 
-  /* ===============================
-     VIDEO OU IMAGE
-  =============================== */
+  /* VIDEO OU IMAGE */
 
   if (ant.video) {
 
-    // Cache la photo
     modalImage.style.display = "none";
 
-    // Affiche la vidéo
     modalVideo.style.display = "block";
 
-    // Lance la vidéo
-    modalVideo.src = paVideoUrl(ant.video);
+    modalVideo.src = ant.video;
 
   } else {
 
-    // Arrête une éventuelle vidéo précédente
     modalVideo.src = "";
 
     modalVideo.style.display = "none";
 
-    // Affiche la photo
     modalImage.style.display = "block";
 
-    modalImage.src = paImageUrl(ant.image);
+    modalImage.src = ant.image || "";
 
-    modalImage.alt =
-      ant.title;
+    modalImage.alt = ant.title || "";
 
   }
 
@@ -2173,9 +2244,8 @@ if (!ant) return;
 }
 
 
-
 /* =========================================================
-   FERMETURE MODALE
+   FERMETURE DE LA MODALE
 ========================================================= */
 
 function closeModal() {
@@ -2186,33 +2256,31 @@ function closeModal() {
     .remove("active");
 
 
-  /* Arrête la vidéo YouTube */
   const modalVideo =
     document.getElementById("modalVideo");
 
   modalVideo.src = "";
-
 
   document.body.style.overflow = "";
 
 }
 
 
+/* =========================================================
+   FERMETURE EN CLIQUANT SUR LE FOND
+========================================================= */
 
 function closeFromBackground(event) {
 
   if (event.target.id === "antModal") {
-
     closeModal();
-
   }
 
 }
 
 
-
 /* =========================================================
-   TOUCHE ECHAP
+   FERMETURE AVEC ECHAP
 ========================================================= */
 
 document.addEventListener(
@@ -2220,14 +2288,11 @@ document.addEventListener(
   function(event) {
 
     if (event.key === "Escape") {
-
       closeModal();
-
     }
 
   }
 );
-
 
 
 /* =========================================================
@@ -2244,10 +2309,9 @@ function toggleMenu() {
 }
 
 
-
 document
   .querySelectorAll("#navigation a")
-  .forEach(link => {
+  .forEach(function(link) {
 
     link.addEventListener(
       "click",
@@ -2264,15 +2328,33 @@ document
   });
 
 
-
 /* =========================================================
-   ANNÉE AUTOMATIQUE
+   ANNEE AUTOMATIQUE
 ========================================================= */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
 
+/* =========================================================
+   CHARGEMENT AUTOMATIQUE GOOGLE SHEETS
+========================================================= */
+
+if (document.readyState === "loading") {
+
+  document.addEventListener(
+    "DOMContentLoaded",
+    paChargerCreations
+  );
+
+} else {
+
+  paChargerCreations();
+
+}
+
+
+    
 </script>
 
 
