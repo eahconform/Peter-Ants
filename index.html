@@ -1443,185 +1443,9 @@
     </div>
 
 
-    <div class="gallery">
-
-
-      <!-- NAISSANCE -->
-
-      <article
-        class="art-card"
-        onclick="openAnt('naissance')"
-      >
-
-        <div class="art-image">
-
-          <span class="number">
-            01
-          </span>
-
-          <img
-            src="naissance.jpg"
-            alt="La Naissance"
-          >
-
-        </div>
-
-        <div class="art-info">
-
-          <h3>
-            La Naissance
-          </h3>
-
-          <div class="art-subtitle">
-            Le commencement
-          </div>
-
-          <div class="price">
-            290 €
-          </div>
-
-          <span class="discover">
-            Découvrir l'œuvre →
-          </span>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- TANK -->
-
-      <article
-        class="art-card"
-        onclick="openAnt('tank')"
-      >
-
-        <div class="art-image">
-
-          <span class="number">
-            02
-          </span>
-
-          <img
-            src="tank.jpg"
-            alt="Le Tank"
-          >
-
-        </div>
-
-        <div class="art-info">
-
-          <h3>
-            Le Tank
-          </h3>
-
-          <div class="art-subtitle">
-            La force du collectif
-          </div>
-
-          <div class="price">
-            490 €
-          </div>
-
-          <span class="discover">
-            Découvrir l'œuvre →
-          </span>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- GUIDE -->
-
-      <article
-        class="art-card"
-        onclick="openAnt('guide')"
-      >
-
-        <div class="art-image">
-
-          <span class="number">
-            03
-          </span>
-
-          <img
-            src="guide.jpg"
-            alt="La Fourmi Guide"
-          >
-
-        </div>
-
-        <div class="art-info">
-
-          <h3>
-            La Fourmi Guide
-          </h3>
-
-          <div class="art-subtitle">
-            Éclairer le chemin
-          </div>
-
-          <div class="price">
-            350 €
-          </div>
-
-          <span class="discover">
-            Découvrir l'œuvre →
-          </span>
-
-        </div>
-
-      </article>
-
-
-
-      <!-- SERVEUSE -->
-
-      <article
-        class="art-card"
-        onclick="openAnt('serveuse')"
-      >
-
-        <div class="art-image">
-
-          <span class="number">
-            04
-          </span>
-
-          <img
-            src="serveuse.jpg"
-            alt="La Fourmi Serveuse"
-          >
-
-        </div>
-
-        <div class="art-info">
-
-          <h3>
-            La Fourmi Serveuse
-          </h3>
-
-          <div class="art-subtitle">
-            L'art du service
-          </div>
-
-          <div class="price">
-            390 €
-          </div>
-
-          <span class="discover">
-            Découvrir l'œuvre →
-          </span>
-
-        </div>
-
-      </article>
-
-
-    </div>
+    <div class="gallery" id="paGallery">
+  <p>Chargement des créations...</p>
+</div>
 
   </div>
 
@@ -2038,147 +1862,234 @@
    DONNÉES DES FOURMIS
 ========================================================= */
 
-const ants = {
+
+/* =====================================================
+   PETER ANTS - CONNEXION GOOGLE SHEETS
+===================================================== */
+
+const PA_API_URL =
+  "https://script.google.com/macros/s/AKfycbwpdGw6ixQDogd9ExhtTKapJak36jHMvwy3-laDbsfD_qz9dYupR32-h3vz5dSejPJOnw/exec";
+
+const ants = {};
 
 
-  naissance: {
+/* =====================================================
+   IMAGES GOOGLE DRIVE
+===================================================== */
 
-    number: "ŒUVRE 01",
+function paImageUrl(url) {
 
-    title: "La Naissance",
+  if (!url) return "";
 
-    subtitle: "Le commencement de toute aventure",
+  url = String(url).trim();
 
-    price: "290 €",
+  const match = url.match(
+    /drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/
+  );
 
-    image: "naissance.jpg",
-
-    story:
-      `Une fourmi émerge de son cocon et découvre pour la
-      première fois le monde qui l'entoure. La scène représente
-      cet instant fragile où quelque chose de nouveau apparaît,
-      encore vulnérable mais déjà prêt à évoluer.`,
-
-    parallel:
-      `La naissance ne représente pas uniquement l'arrivée
-      au monde. Elle évoque également le début d'une idée,
-      d'un projet, d'une entreprise ou d'une nouvelle étape
-      dans une vie. Toutes les grandes réalisations commencent
-      par quelque chose de petit et de fragile.`,
-
-    message:
-      `Chaque commencement possède un potentiel immense.
-      Il faut parfois protéger, nourrir et laisser grandir
-      une idée avant qu'elle puisse révéler toute sa force.`
-
-  },
-
-
-
-  tank: {
-
-  number: "ŒUVRE 02",
-
-  title: "Le Tank",
-
-  subtitle: "La force du collectif",
-
-  price: "490 €",
-
-  image: "tank.jpg",
-
-  video:
-    "https://www.youtube.com/embed/Dj1sy4topLk?autoplay=1&mute=1&playsinline=1&rel=0",
-
-    story:
-      `Plusieurs fourmis avancent ensemble dans un environnement
-      hostile. Leur organisation et leur puissance collective
-      les transforment symboliquement en une véritable unité
-      capable d'affronter les obstacles.`,
-
-    parallel:
-      `Dans la vie humaine, les grandes réalisations reposent
-      rarement sur une personne seule. Une entreprise, une équipe,
-      une famille ou un groupe progresse lorsque chacun apporte
-      une partie de sa force au collectif.`,
-
-    message:
-      `Individuellement petite, la fourmi devient redoutablement
-      puissante lorsqu'elle agit avec les autres. L'union,
-      l'organisation et la détermination permettent de franchir
-      des obstacles qui semblaient impossibles.`
-
-  },
-
-
-
-  guide: {
-
-    number: "ŒUVRE 03",
-
-    title: "La Fourmi Guide",
-
-    subtitle: "Éclairer le chemin",
-
-    price: "350 €",
-
-    image: "guide.jpg",
-
-    story:
-      `Une fourmi traverse l'obscurité en transportant une lanterne.
-      Autour d'elle, le chemin reste inconnu. La lumière qu'elle
-      porte devient son seul repère et lui permet d'avancer.`,
-
-    parallel:
-      `Dans notre vie, certaines personnes deviennent des guides :
-      un parent, un professeur, un entraîneur, un ami ou un mentor.
-      Ils ne parcourent pas nécessairement le chemin à notre place,
-      mais ils nous permettent de mieux voir la direction à prendre.`,
-
-    message:
-      `Être un guide ne signifie pas connaître toutes les réponses.
-      Cela signifie parfois simplement apporter suffisamment
-      de lumière pour permettre à quelqu'un de continuer à avancer.`
-
-  },
-
-
-
-  serveuse: {
-
-    number: "ŒUVRE 04",
-
-    title: "La Fourmi Serveuse",
-
-    subtitle: "L'art du service",
-
-    price: "390 €",
-
-    image: "serveuse.jpg",
-
-    story:
-      `Dans l'atmosphère chaleureuse d'une cave ou d'un restaurant,
-      une fourmi présente une bouteille de vin. L'insecte adopte
-      ici un rôle profondément humain : accueillir, servir
-      et participer à un moment de convivialité.`,
-
-    parallel:
-      `Le service semble parfois être une succession de petits
-      gestes. Pourtant, dans un restaurant, un hôtel ou un commerce,
-      ces détails construisent l'expérience vécue par le client.
-      Une attention peut transformer un instant ordinaire
-      en souvenir.`,
-
-    message:
-      `Cette création célèbre les métiers du service,
-      l'attention portée aux autres et la valeur des petits détails.
-      Le soin donné à une expérience peut être aussi important
-      que le produit lui-même.`
-
+  if (match) {
+    return "https://drive.google.com/thumbnail?id=" +
+      match[1] + "&sz=w1600";
   }
 
-};
+  return url;
+}
 
+
+/* =====================================================
+   VIDEOS YOUTUBE
+===================================================== */
+
+function paVideoUrl(url) {
+
+  if (!url) return "";
+
+  try {
+
+    const u = new URL(url);
+    let id = "";
+
+    if (
+      u.hostname === "youtube.com" ||
+      u.hostname === "www.youtube.com" ||
+      u.hostname === "m.youtube.com"
+    ) {
+      id = u.searchParams.get("v") ||
+        (u.pathname.match(
+          /^\/(?:embed|shorts)\/([\w-]{11})/
+        ) || [])[1] || "";
+    }
+
+    if (
+      u.hostname === "youtu.be" ||
+      u.hostname === "www.youtu.be"
+    ) {
+      id = u.pathname.split("/")[1];
+    }
+
+    if (!/^[\w-]{11}$/.test(id)) return "";
+
+    return "https://www.youtube.com/embed/" +
+      id +
+      "?autoplay=1&mute=1&playsinline=1&rel=0";
+
+  } catch (e) {
+    return "";
+  }
+}
+
+
+/* =====================================================
+   CREATION AUTOMATIQUE DES CARTES
+===================================================== */
+
+function paCreerCarte(ant, index) {
+
+  const card = document.createElement("article");
+  card.className = "art-card";
+
+  card.addEventListener("click", function() {
+    openAnt(ant.id);
+  });
+
+  const media = document.createElement("div");
+  media.className = "art-image";
+
+  const numero = document.createElement("span");
+  numero.className = "number";
+  numero.textContent =
+    String(index + 1).padStart(2, "0");
+
+  const image = document.createElement("img");
+  image.src = paImageUrl(ant.image);
+  image.alt = ant.title;
+  image.loading = "lazy";
+
+  media.append(numero, image);
+
+  const info = document.createElement("div");
+  info.className = "art-info";
+
+  const titre = document.createElement("h3");
+  titre.textContent = ant.title;
+
+  const sousTitre = document.createElement("div");
+  sousTitre.className = "art-subtitle";
+  sousTitre.textContent = ant.subtitle;
+
+  const prix = document.createElement("div");
+  prix.className = "price";
+  prix.textContent = ant.price;
+
+  const lien = document.createElement("span");
+  lien.className = "discover";
+  lien.textContent = "Découvrir l'œuvre →";
+
+  info.append(titre, sousTitre, prix, lien);
+
+  card.append(media, info);
+
+  return card;
+}
+
+
+/* =====================================================
+   CHARGEMENT DES DONNEES
+===================================================== */
+
+async function paChargerCreations() {
+
+  const galerie = document.getElementById("paGallery");
+
+  if (!galerie) {
+    console.error("Galerie paGallery introuvable.");
+    return;
+  }
+
+  try {
+
+    const response = await fetch(
+      PA_API_URL + "?t=" + Date.now(),
+      {
+        cache: "no-store",
+        redirect: "follow"
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("HTTP " + response.status);
+    }
+
+    const data = await response.json();
+
+    if (
+      !data.success ||
+      !Array.isArray(data.creations)
+    ) {
+      throw new Error(
+        data.error || "Réponse API invalide"
+      );
+    }
+
+    Object.keys(ants).forEach(id => {
+      delete ants[id];
+    });
+
+    const fragment = document.createDocumentFragment();
+
+    data.creations.forEach((row, index) => {
+
+      if (!row.id) return;
+
+      const ant = {
+        ...row,
+        image: paImageUrl(row.image),
+        video: paVideoUrl(row.video)
+      };
+
+      ants[ant.id] = ant;
+
+      fragment.appendChild(
+        paCreerCarte(ant, index)
+      );
+
+    });
+
+    galerie.replaceChildren(fragment);
+
+    if (!galerie.children.length) {
+      galerie.textContent =
+        "Aucune création active actuellement.";
+    }
+
+    console.log(
+      "Peter Ants : " +
+      data.creations.length +
+      " créations chargées."
+    );
+
+  } catch (error) {
+
+    console.error(
+      "Erreur synchronisation Peter Ants :",
+      error
+    );
+
+    galerie.textContent =
+      "Impossible de charger les créations. " +
+      "Veuillez réessayer ultérieurement.";
+  }
+}
+
+
+/* =====================================================
+   CHARGEMENT AUTOMATIQUE
+===================================================== */
+
+document.addEventListener(
+  "DOMContentLoaded",
+  paChargerCreations
+); 
 
 
 /* =========================================================
@@ -2188,7 +2099,7 @@ const ants = {
 function openAnt(id) {
 
   const ant = ants[id];
-
+if (!ant) return;
   const modalImage =
     document.getElementById("modalImage");
 
@@ -2231,7 +2142,7 @@ function openAnt(id) {
     modalVideo.style.display = "block";
 
     // Lance la vidéo
-    modalVideo.src = ant.video;
+    modalVideo.src = paVideoUrl(ant.video);
 
   } else {
 
@@ -2243,8 +2154,7 @@ function openAnt(id) {
     // Affiche la photo
     modalImage.style.display = "block";
 
-    modalImage.src =
-      ant.image;
+    modalImage.src = paImageUrl(ant.image);
 
     modalImage.alt =
       ant.title;
